@@ -15,8 +15,13 @@ RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.m
     R -e "IRkernel::installspec(user = FALSE, name = 'ir405', displayname = 'R 4.0.5', sys_prefix = TRUE)" && \
     sed -i 's/"IRkernel::main()"/"options(bitmapType=\x27cairo\x27);IRkernel::main()"/g' /opt/app-root/share/jupyter/kernels/ir405/kernel.json
 
-# set library to default (used in install.r from littler)
+# set R library to default (used in install.r from littler)
 ENV LIBLOC /usr/lib64/R/library
+
+# create User R Library path at startup if not present
+RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/RLibrary \n/' /opt/app-root/bin/start-singleuser.sh
+# set User R Library path
+ENV R_LIBS_USER /opt/app-root/src/RLibrary
 
 # Copying custom packages
 COPY requirements.txt /tmp/
@@ -33,6 +38,8 @@ RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.
     rm -rf $HOME/.cache/yarn && \
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
+
+
 
 WORKDIR /opt/app-root/src
 USER 1001
