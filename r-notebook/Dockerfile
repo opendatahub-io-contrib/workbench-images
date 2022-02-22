@@ -4,10 +4,8 @@ USER root
 
 # Install R
 RUN yum -y update && \
-    yum install -y libXext libXt-devel libXrender cairo-devel cairo \
-    openssl-devel libcurl-devel libssh2-devel libxml2-devel czmq-devel \
-    R-Cairo R-core R-core-devel R-java R-Rcpp R-highlight R-littler \
-    R-littler-examples && \
+    yum -y install R-Cairo R-core R-core-devel R-java R-Rcpp R-highlight \
+    R-littler R-littler-examples && \
     yum -y clean all && \
     rm -rf /var/cache/dnf
 
