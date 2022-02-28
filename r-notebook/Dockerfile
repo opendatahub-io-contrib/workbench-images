@@ -19,9 +19,9 @@ RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.m
 ENV LIBLOC /usr/lib64/R/library
 
 # create User R Library path at startup if not present
-RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/RLibrary \n/' /opt/app-root/bin/start-singleuser.sh
+RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/R\/x86_64-pc-linux-gnu-library\/4.0 \n/' /opt/app-root/bin/start-singleuser.sh
 # set User R Library path
-ENV R_LIBS_USER /opt/app-root/src/RLibrary
+ENV R_LIBS_USER /opt/app-root/src/R/x86_64-pc-linux-gnu-library/4.0
 
 # Copying custom packages
 COPY requirements.txt /tmp/
