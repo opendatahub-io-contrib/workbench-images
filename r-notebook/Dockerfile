@@ -29,14 +29,12 @@ WORKDIR /tmp/
 RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm && \
     yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm && \
     yum -y clean all && \
-    rm -rf /var/cache/dnf && \
-    chown -R root:root /var/lib/rstudio-server && \
-    chmod -R g=u /var/lib/rstudio-server
+    rm -rf /var/cache/dnf
 
 ENV USER=rstudio-server
 
 # Copying custom packages
-COPY requirements.txt /tmp/
+COPY requirements.txt ./packages/customlauncher /tmp/
 COPY ./packages/customlauncher /tmp/customlauncher
 
 # Install custom packages
@@ -51,6 +49,12 @@ RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.
     rm -rf $HOME/.cache/yarn && \
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
+
+COPY rserver.conf /etc/rstudio/rserver.conf
+
+RUN fix-permissions /var/lib/rstudio-server
+
+RUN mkdir -p /usr/share/doc/R
 
 WORKDIR /opt/app-root/src
 USER 1001
