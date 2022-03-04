@@ -12,3 +12,4 @@ jupyter-nbrequirements==0.7.3
 supervisor==4.1.0
 jupyterlab-git==0.30
 jupyterlab-spellchecker==0.7.2
+jupyter-server-proxy==3.2.1

@@ -23,23 +23,34 @@ RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/R\/x86_64-pc-linux-gnu-library\
 # set User R Library path
 ENV R_LIBS_USER /opt/app-root/src/R/x86_64-pc-linux-gnu-library/4.0
 
+WORKDIR /tmp/
+
+# Install RStudio
+RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm && \
+    yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm && \
+    yum -y clean all && \
+    rm -rf /var/cache/dnf && \
+    chown -R root:root /var/lib/rstudio-server && \
+    chmod -R g=u /var/lib/rstudio-server
+
+ENV USER=rstudio-server
+
 # Copying custom packages
 COPY requirements.txt /tmp/
-
-WORKDIR /tmp/
+COPY ./packages/customlauncher /tmp/customlauncher
 
 # Install custom packages
 RUN micropipenv install --deploy 
 RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
+    pip install --no-cache-dir /tmp/customlauncher && \
     jupyter labextension install @techrah/text-shortcuts && \
+    jupyter labextension install @jupyterlab/server-proxy && \
     jupyter lab build && \
     jupyter lab clean && \
     npm cache clean --force && \
     rm -rf $HOME/.cache/yarn && \
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
-
-
 
 WORKDIR /opt/app-root/src
 USER 1001
