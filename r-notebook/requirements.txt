@@ -630,6 +630,10 @@ jupyter-require==0.6.1 \
     #   jupyter-nbrequirements
     #   jupyter-nbutils
     #   jupyterlab-requirements
+jupyter-rsession-proxy==2.0.1 \
+    --hash=sha256:de5f66e5157201653c008a19a8fb8355c12efe7520fee0cf863ae54e631221df \
+    --hash=sha256:f77c56838e2545d864e41580c501329ed78f8f4dde6ef3060f8ec4ace801ef34
+    # via -r requirements.in
 jupyter-server==1.13.1 \
     --hash=sha256:6d70ebf8e789a7d0a5cd1588e078ccbbdca388dc2c74a6cd62b9ebb80609344f \
     --hash=sha256:abfe55b6cd7bac0d7d7b8042765b7e451f11b5f2276a2ad708745cd8904d4e5b
@@ -648,7 +652,9 @@ jupyter-server-mathjax==0.2.5 \
 jupyter-server-proxy==3.2.1 \
     --hash=sha256:080e9910592d06422bdd93dfc1fa8350c6fdaec9fbbd050630e90f7a5593a4f7 \
     --hash=sha256:150124483df109eed8280b13ea78c1a417dd8f2b513b624aa7f1201424b8cdf8
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   jupyter-rsession-proxy
 jupyter-telemetry==0.1.0 \
     --hash=sha256:1de3e423b23aa40ca4a4238d65c56dda544061ff5aedc3f7647220ed7e3b9589 \
     --hash=sha256:445c613ae3df70d255fe3de202f936bba8b77b4055c43207edf22468ac875314

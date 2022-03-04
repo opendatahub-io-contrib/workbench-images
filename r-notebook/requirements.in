@@ -13,3 +13,4 @@ supervisor==4.1.0
 jupyterlab-git==0.30
 jupyterlab-spellchecker==0.7.2
 jupyter-server-proxy==3.2.1
+jupyter-rsession-proxy==2.0.1

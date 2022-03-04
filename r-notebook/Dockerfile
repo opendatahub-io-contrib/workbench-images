@@ -19,9 +19,9 @@ RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.m
 ENV LIBLOC /usr/lib64/R/library
 
 # create User R Library path at startup if not present
-RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/R\/x86_64-pc-linux-gnu-library\/4.0 \n/' /opt/app-root/bin/start-singleuser.sh
+RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/Rpackages\/4.0 \n/' /opt/app-root/bin/start-singleuser.sh
 # set User R Library path
-ENV R_LIBS_USER /opt/app-root/src/R/x86_64-pc-linux-gnu-library/4.0
+ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.0
 
 WORKDIR /tmp/
 
@@ -31,16 +31,18 @@ RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2
     yum -y clean all && \
     rm -rf /var/cache/dnf
 
-ENV USER=rstudio-server
+# Specific RStudio config and fixes
+RUN chmod 1777 /var/run/rstudio-server && \
+    mkdir -p /usr/share/doc/R
+
+COPY rsession.conf /etc/rstudio/rsession.conf
 
 # Copying custom packages
-COPY requirements.txt ./packages/customlauncher /tmp/
-COPY ./packages/customlauncher /tmp/customlauncher
+COPY requirements.txt /tmp/
 
 # Install custom packages
 RUN micropipenv install --deploy 
 RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
-    pip install --no-cache-dir /tmp/customlauncher && \
     jupyter labextension install @techrah/text-shortcuts && \
     jupyter labextension install @jupyterlab/server-proxy && \
     jupyter lab build && \
@@ -49,12 +51,6 @@ RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.
     rm -rf $HOME/.cache/yarn && \
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
-
-COPY rserver.conf /etc/rstudio/rserver.conf
-
-RUN fix-permissions /var/lib/rstudio-server
-
-RUN mkdir -p /usr/share/doc/R
 
 WORKDIR /opt/app-root/src
 USER 1001
