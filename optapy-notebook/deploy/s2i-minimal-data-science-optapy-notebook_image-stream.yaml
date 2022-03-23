@@ -1,0 +1,27 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-desc: >-
+      JupyterLab notebook image with OptaPy.
+    opendatahub.io/notebook-image-name: Minimal DataScience notebook with OptaPy
+    opendatahub.io/notebook-image-url: 'https://github.com/guimou/custom-notebooks/tree/main/optapy-notebook'
+  name: s2i-minimal-data-science-optapy-notebook
+  labels:
+    component.opendatahub.io/name: jupyterhub
+    opendatahub.io/component: 'true'
+    opendatahub.io/notebook-image: 'true'
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations:
+        opendatahub.io/notebook-python-dependencies: >-
+          [{"name":"OptaPy","version":""}]
+        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"}]'
+      from:
+        kind: DockerImage
+        name: 'quay.io/guimou/s2i-minimal-data-science-optapy-notebook:latest'
+      referencePolicy:
+        type: Source
