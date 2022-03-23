@@ -52,6 +52,10 @@ RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
 
+COPY ./jupyter-rsession-proxy /tmp/jupyter-rsession-proxy
+
+RUN pip install --no-cache-dir /tmp/jupyter-rsession-proxy
+
 WORKDIR /opt/app-root/src
 USER 1001
 
