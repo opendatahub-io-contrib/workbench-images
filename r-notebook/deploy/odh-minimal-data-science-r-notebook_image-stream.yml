@@ -6,7 +6,7 @@ metadata:
       JupyterLab minimal notebook image with R, IRKernel and RStudio.
     opendatahub.io/notebook-image-name: Minimal Python with R and RStudio
     opendatahub.io/notebook-image-url: 'https://github.com/guimou/custom-notebooks/tree/main/r-notebook'
-  name: odh-minimal-datascience-r-notebook
+  name: odh-minimal-data-science-r-notebook
   labels:
     component.opendatahub.io/name: jupyterhub
     opendatahub.io/component: 'true'
@@ -22,6 +22,6 @@ spec:
         opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"}]'
       from:
         kind: DockerImage
-        name: 'quay.io/guimou/odh-minimal-datascience-r-notebook:latest'
+        name: 'quay.io/guimou/odh-minimal-data-science-r-notebook:latest'
       referencePolicy:
         type: Source

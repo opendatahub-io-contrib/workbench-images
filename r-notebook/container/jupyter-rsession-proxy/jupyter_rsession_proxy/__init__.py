@@ -92,8 +92,8 @@ def setup_rserver():
         ]
         # Support at least v1.2.1335 and up
 
-        #if _support_arg('www-root-path'):
-        #    cmd.append('--www-root-path={base_url}rstudio/')
+        if _support_arg('www-root-path'):
+            cmd.append('--www-root-path={{base_url}}rstudio/')
         if _support_arg('server-data-dir'):
             cmd.append(f'--server-data-dir={server_data_dir}')
         if _support_arg('database-config-file'):
