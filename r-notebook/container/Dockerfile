@@ -21,7 +21,8 @@ ENV LIBLOC /usr/lib64/R/library
 # create User R Library path at startup if not present
 RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/Rpackages\/4.0 \n/' /opt/app-root/bin/start-singleuser.sh
 # set User R Library path
-ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.0
+ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.0 \
+    USER=odh-user
 
 WORKDIR /tmp/
 
@@ -34,15 +35,16 @@ RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2
 # Specific RStudio config and fixes
 RUN chmod 1777 /var/run/rstudio-server && \
     mkdir -p /usr/share/doc/R
-
 COPY rsession.conf /etc/rstudio/rsession.conf
 
-# Copying custom packages
+# Copying additional packages
 COPY requirements.txt /tmp/
+COPY ./jupyter-rsession-proxy /tmp/jupyter-rsession-proxy
 
-# Install custom packages
-RUN micropipenv install --deploy 
-RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
+# Install additional packages
+RUN micropipenv install --deploy && \
+    pip install --no-cache-dir /tmp/jupyter-rsession-proxy && \
+    pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
     jupyter labextension install @techrah/text-shortcuts && \
     jupyter labextension install @jupyterlab/server-proxy && \
     jupyter lab build && \
@@ -52,11 +54,8 @@ RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.
     rm -rf $HOME/.node-gyp && \
     fix-permissions /opt/app-root
 
-COPY ./jupyter-rsession-proxy /tmp/jupyter-rsession-proxy
-
-RUN pip install --no-cache-dir /tmp/jupyter-rsession-proxy
-
 WORKDIR /opt/app-root/src
+
 USER 1001
 
 CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0 --port=8080

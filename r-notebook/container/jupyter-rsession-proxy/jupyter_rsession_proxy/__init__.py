@@ -37,14 +37,12 @@ def rewrite_auth(response, request):
        /auth-sign-in. See rstudio/rstudio#8888. We rewrite the response by
        sending the client to the right place.
     '''
+    correct_root_url = request.host
     for header, v in response.headers.get_all():
-        if header == "Location" and v.endswith("/auth-sign-in?appUri=%2F"):
+        if header == "Location" and correct_root_url not in v:
             # Visit the correct page
-            u = urlparse(request.uri)
-            print("u.path=" + u.path)
-            print("v=" + v)
-            print("response.headers[header]=" + urlunparse(u._replace(path=u.path+"auth-sign-in?appUri=%2F")))
-            response.headers[header] = urlunparse(u._replace(path=u.path+"auth-sign-in?appUri=%2F"))
+            u = urlparse(v)
+            response.headers[header] = urlunparse(u._replace(netloc=correct_root_url))
 
 def setup_rserver():
     def _get_env(port):
@@ -93,7 +91,7 @@ def setup_rserver():
         # Support at least v1.2.1335 and up
 
         if _support_arg('www-root-path'):
-            cmd.append('--www-root-path={{base_url}}rstudio/')
+            cmd.append('--www-root-path={base_url}rstudio/')
         if _support_arg('server-data-dir'):
             cmd.append(f'--server-data-dir={server_data_dir}')
         if _support_arg('database-config-file'):
