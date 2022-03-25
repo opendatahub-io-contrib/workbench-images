@@ -2,6 +2,7 @@
 #
 # Default dependencies
 #
+## Forced to update packages due to JL issue with RStudio
 ipython<8.0.0
 notebook==6.4.6
 jupyterhub==1.3.0

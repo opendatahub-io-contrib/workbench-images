@@ -21,8 +21,7 @@ ENV LIBLOC /usr/lib64/R/library
 # create User R Library path at startup if not present
 RUN sed -i '1s/^/mkdir -p  \/opt\/app-root\/src\/Rpackages\/4.0 \n/' /opt/app-root/bin/start-singleuser.sh
 # set User R Library path
-ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.0 \
-    USER=odh-user
+ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.0
 
 WORKDIR /tmp/
 
@@ -44,14 +43,12 @@ COPY ./jupyter-rsession-proxy /tmp/jupyter-rsession-proxy
 # Install additional packages
 RUN micropipenv install --deploy && \
     pip install --no-cache-dir /tmp/jupyter-rsession-proxy && \
-    pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
     jupyter labextension install @techrah/text-shortcuts && \
     jupyter labextension install @jupyterlab/server-proxy && \
     jupyter lab build && \
     jupyter lab clean && \
     npm cache clean --force && \
-    rm -rf $HOME/.cache/yarn && \
-    rm -rf $HOME/.node-gyp && \
+    rm -rf /usr/local/share/.cache/yarn && \
     fix-permissions /opt/app-root
 
 WORKDIR /opt/app-root/src
