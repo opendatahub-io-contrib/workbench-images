@@ -34,25 +34,25 @@ RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2
 # Specific RStudio config and fixes
 RUN chmod 1777 /var/run/rstudio-server && \
     mkdir -p /usr/share/doc/R
-
 COPY rsession.conf /etc/rstudio/rsession.conf
 
-# Copying custom packages
+# Copying additional packages
 COPY requirements.txt /tmp/
+COPY ./jupyter-rsession-proxy /tmp/jupyter-rsession-proxy
 
-# Install custom packages
-RUN micropipenv install --deploy 
-RUN pip install --no-cache-dir --use-deprecated legacy-resolver elyra[all]==3.6.0 && \
+# Install additional packages
+RUN micropipenv install --deploy && \
+    pip install --no-cache-dir /tmp/jupyter-rsession-proxy && \
     jupyter labextension install @techrah/text-shortcuts && \
     jupyter labextension install @jupyterlab/server-proxy && \
     jupyter lab build && \
     jupyter lab clean && \
     npm cache clean --force && \
-    rm -rf $HOME/.cache/yarn && \
-    rm -rf $HOME/.node-gyp && \
+    rm -rf /usr/local/share/.cache/yarn && \
     fix-permissions /opt/app-root
 
 WORKDIR /opt/app-root/src
+
 USER 1001
 
 CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0 --port=8080
