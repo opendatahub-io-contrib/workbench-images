@@ -4,7 +4,8 @@ metadata:
   annotations:
     opendatahub.io/notebook-image-desc: >-
       JupyterLab minimal notebook image with R, IRKernel and RStudio.
-    opendatahub.io/notebook-image-name: Minimal Python with R and RStudio
+    opendatahub.io/notebook-image-name: R Notebook
+    opendatahub.io/notebook-image-order: '200'
     opendatahub.io/notebook-image-url: 'https://github.com/guimou/custom-notebooks/tree/main/r-notebook'
   name: odh-minimal-data-science-r-notebook
   labels:
@@ -19,7 +20,8 @@ spec:
       annotations:
         opendatahub.io/notebook-python-dependencies: >-
           [{"name":"R","version":"4.0.5"},{"name":"RStudio","version":"2022.02.0-443"}]
-        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"}]'
+        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"},{"name":"BYO Notebook Image -
+          R","version":"4.0.5"},{"name":"RStudio","version":"2022.02.0"}]'
       from:
         kind: DockerImage
         name: 'quay.io/guimou/odh-minimal-data-science-r-notebook:latest'
