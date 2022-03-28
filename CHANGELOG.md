@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fix Python Kernel name
+
 ## [0.0.8] - 2022-03-28
 
 ### Added
