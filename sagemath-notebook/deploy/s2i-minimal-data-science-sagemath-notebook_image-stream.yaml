@@ -19,7 +19,8 @@ spec:
       annotations:
         opendatahub.io/notebook-python-dependencies: >-
           [{"name":"SageMath","version":"9.3-3"}]
-        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"}]'
+        opendatahub.io/notebook-software: '[{"name":"BYO Notebook Image -
+          SageMath","version":"9.3"},{"name":"Python","version":"v3.9.10"}]'
       from:
         kind: DockerImage
         name: 'quay.io/guimou/s2i-minimal-data-science-sagemath-notebook:latest'
