@@ -19,7 +19,7 @@ spec:
       annotations:
         opendatahub.io/notebook-python-dependencies: >-
           [{"name":"OptaPy","version":""}]
-        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"}]'
+        opendatahub.io/notebook-software: '[{"name":"BYO Notebook Image - OptaPy","version":"8.17.0"},{"name":"Python","version":"3.9.11"}]'
       from:
         kind: DockerImage
         name: 'quay.io/guimou/s2i-minimal-data-science-optapy-notebook:latest'

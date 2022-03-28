@@ -20,8 +20,8 @@ spec:
       annotations:
         opendatahub.io/notebook-python-dependencies: >-
           [{"name":"R","version":"4.0.5"},{"name":"RStudio","version":"2022.02.0-443"}]
-        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.9.7"},{"name":"BYO Notebook Image -
-          R","version":"4.0.5"},{"name":"RStudio","version":"2022.02.0"}]'
+        opendatahub.io/notebook-software: '[{"name":"BYO Notebook Image -
+          R","version":"4.0.5"},{"name":"RStudio","version":"2022.02.0"},{"name":"Python","version":"3.9.10"}]'
       from:
         kind: DockerImage
         name: 'quay.io/guimou/odh-minimal-data-science-r-notebook:latest'
