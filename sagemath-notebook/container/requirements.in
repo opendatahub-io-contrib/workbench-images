@@ -1,0 +1,6 @@
+--index-url https://pypi.org/simple
+#
+# Default dependencies
+#
+widgetsnbextension==3.6.0
+ipywidgets==7.7.0
