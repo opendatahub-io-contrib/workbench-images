@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Fix Python Kernel name
+Nothing there!
+
+## [0.0.9] - 2022-06-08
+
+### Added
+
+- Streamlit notebook
 
 ## [0.0.8] - 2022-03-28
 

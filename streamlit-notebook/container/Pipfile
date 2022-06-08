@@ -1,0 +1,51 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+beautifulsoup4 = "==4.6.3"
+bokeh = "~=2.4.3"
+boto3 = "==1.24.2"
+cloudpickle = "~=2.1.0"
+cython = "==0.29.30"
+dask = "2022.5.2"
+dill = "~=0.3.5.1"
+distributed = "2022.5.2"
+elyra-python-editor-extension = "==3.9.0"
+h5py = "~=3.7.0"
+ipywidgets = "~=7.7.0"
+jupyter_kernel_gateway = "~=2.5.0"
+jupyter-bokeh = "~=3.0.4"
+jupyter-nbrequirements = "*"
+jupyter-server-proxy = "~=3.2.1"
+jupyterhub = "~=1.5.0"
+jupyterlab = "~=3.4.2"
+jupyterlab-git = "~=0.37.0"
+jupyterlab-requirements = "~=0.16.0"
+jupyterlab-spellchecker = "~=0.7.2"
+jupyterlab-tabnine = "==0.0.24"
+kafka-python = "~=2.0.2"
+matplotlib = "~=3.5.2"
+notebook = "~=6.4.0"
+numpy = "~=1.22.4"
+pandas = "~=1.4.2"
+plotly = "~=5.8.0"
+pre-commit = "~=2.19.0"
+pyarrow = "~=8.0.0"
+scikit-image = "~=0.19.2"
+scikit-learn = "~=1.1.1"
+scipy = "~=1.8.1"
+seaborn = "~=0.11.2"
+sqlalchemy = "~=1.4.37"
+statsmodels = "~=0.13.2"
+streamlit = "~=1.9.2"
+supervisor = "~=4.2.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
