@@ -9,27 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing there!
 
+## [0.0.10] - 2022-06-22
+
+### Added
+
+- nbgitpuller added to Streamlit notebook (quay.io/guimou/s2i-generic-data-science-streamlit-notebook:0.0.6)
+
+### Modified
+
+- fix yarn cache clean on Streamlit notebook image
+- prebuilt-images repos added to CHANGELOG
+
 ## [0.0.9] - 2022-06-08
 
 ### Added
 
-- Streamlit notebook
+- Streamlit notebook (quay.io/guimou/s2i-generic-data-science-streamlit-notebook:0.0.5)
 
 ## [0.0.8] - 2022-03-28
 
 ### Added
 
 - Changelog file
-- SageMath notebook
+- SageMath notebook (quay.io/guimou/s2i-minimal-data-science-sagemath-notebook:0.0.1)
 
 ## [0.0.7] - 2022-03-25
 
 ### Added
 
-- RStudio added to the R notebook
+- RStudio added to the R notebook (quay.io/guimou/odh-minimal-data-science-r-notebook:0.0.15)
 
 ## [0.0.6] - 2022-03-23
 
 ### Added
 
-- OptaPy notebook added
+- OptaPy notebook added (quay.io/guimou/s2i-minimal-data-science-optapy-notebook:v0.0.1)
