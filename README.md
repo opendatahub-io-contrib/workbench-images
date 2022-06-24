@@ -1,5 +1,7 @@
 # Custom notebook images
 
+*[See changelog](CHANGELOG.md)*
+
 Various custom Jupyter Notebook Images to use with [Open Data Hub](http://opendatahub.io/) or [Red Hat OpenShift Data Science](https://www.redhat.com/fr/technologies/cloud-computing/openshift/openshift-data-science).
 
 * OptaPy: Minimal JupyterLab notebook including [OptaPy](https://www.optapy.org/optapy/latest/optapy-introduction/optapy-introduction.html), the Python version of OptaPlanner.
@@ -20,4 +22,3 @@ Pre-built versions of the images are available:
 * SageMath: https://quay.io/guimou/s2i-minimal-data-science-sagemath-notebook
 * Streamlit: https://quay.io/guimou/s2i-generic-data-science-streamlit-notebook
 
-*[Changelog](CHANGELOG.md)*
