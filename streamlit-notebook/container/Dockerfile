@@ -30,8 +30,9 @@ RUN pip install --no-cache-dir /tmp/jupyterlab_streamlit_menu-0.1.0-py3-none-any
 
 RUN jupyter lab build && \
     jupyter lab clean && \
+    npm install -g yarn && \
     npm cache clean --force && \
-    rm -rf /usr/local/share/.cache/yarn && \
+    yarn cache clean && \
     fix-permissions /opt/app-root
 
 WORKDIR /opt/app-root/src
