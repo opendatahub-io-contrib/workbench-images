@@ -7,7 +7,8 @@ Various custom Jupyter Notebook Images to use with [Open Data Hub](http://openda
 * OptaPy: Minimal JupyterLab notebook including [OptaPy](https://www.optapy.org/optapy/latest/optapy-introduction/optapy-introduction.html), the Python version of OptaPlanner.
 * R: Minimal JupyterLab notebook including [R](https://www.r-project.org/) (4.0.5) and [RStudio](https://www.rstudio.com/products/rstudio/) (2022.02.0).
 * SageMath: Minimal JupyterLab notebook including [SageMath](https://www.sagemath.org/) 9.3
-* Streamlit: Standard Data Science notebook image including [Streamlit](https://streamlit.io/) 1.9.2
+* Streamlit: Standard Data Science notebook image including [Streamlit](https://streamlit.io/) 1.10.0
+* Monai: Data Science notebook image including [Monai](https://monai.io/) 0.9.0, CUDA 11.6.2 and Streamlit 1.10.0
 
 ## Deployment
 
@@ -21,4 +22,4 @@ Pre-built versions of the images are available:
 * R: https://quay.io/guimou/odh-minimal-data-science-r-notebook
 * SageMath: https://quay.io/guimou/s2i-minimal-data-science-sagemath-notebook
 * Streamlit: https://quay.io/guimou/s2i-generic-data-science-streamlit-notebook
-
+* Monai: https://quay.io/repository/guimou/s2i-monai-notebook
