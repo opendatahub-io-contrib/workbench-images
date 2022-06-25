@@ -13,6 +13,18 @@ Nothing there!
 
 ### Added
 
+- New notebook image: CUDA 11.6.2 + Monai 0.9.0 + Streamlit 1.10.0 notebook (quay.io/guimou/s2i-monai-notebook:0.0.2)
+
+### Modified
+
+- Streamlit image updated to streamlit 1.10.0 - fixes #5
+- fix Streamlit launch scripts for directory context - fixes #6
+- new streamlit image: quay.io/guimou/s2i-generic-data-science-streamlit-notebook:0.0.7
+
+## [0.0.10] - 2022-06-22
+
+### Added
+
 - nbgitpuller added to Streamlit notebook (quay.io/guimou/s2i-generic-data-science-streamlit-notebook:0.0.6)
 
 ### Modified

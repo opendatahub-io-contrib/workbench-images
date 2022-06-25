@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+#
+# ------------------------>% Thoth related content %<------------------------
+#
+THOTH_ASSEMBLE_DEBUG=${THOTH_ASSEMBLE_DEBUG:-0}
+[[ ${THOTH_ASSEMBLE_DEBUG} -eq 0 ]] || set -e
+
+# Submit stack to Thoth, but do not use the recommended one:
+THOTH_DRY_RUN=${THOTH_DRY_RUN:-0}
+# Force advises even if the lock is present in the repo:
+THOTH_ADVISE=${THOTH_ADVISE:-1}
+# Trigger Thoth configuration file check:
+THOTH_CONFIG_CHECK=${THOTH_CONFIG_CHECK:-1}
+# Use provenance checks by default if THOTH_ADVISE is set to 0.
+THOTH_PROVENANCE_CHECK=${THOTH_PROVENANCE_CHECK:-1}
+# Use Thamos from git instead of a PyPI release:
+THOTH_FROM_MASTER=${THOTH_FROM_MASTER:-0}
+# Generate .thoth.yaml file during the build process.
+THOTH_FORCE_GENERATE_CONFIG=${THOTH_FORCE_GENERATE_CONFIG:-0}
+# Thoth host to submit recommendations to:
+export THOTH_HOST=${THOTH_HOST:-khemenu.thoth-station.ninja}
+# Disable progressbar for thamos:
+export THAMOS_NO_PROGRESSBAR=${THAMOS_NO_PROGRESSBAR:-1}
+# Fallback to the lock file present in the repo if analysis fails.
+THOTH_ERROR_FALLBACK=${THOTH_ERROR_FALLBACK:-0}
+
+# Print Thoth configuration to logs if debug is enabled.
+[[ ${THOTH_ASSEMBLE_DEBUG} -eq 0 ]] || env | grep -e '^THOTH_' -e '^THAMOS_'
+
+# A directory where s2i places sources.
+pushd /tmp/src
+
+# Make a backup of the lock present in the git root.
+[[ ${THOTH_DRY_RUN} -ne 0 && -f Pipfile.lock ]] && cp Pipfile.lock ../
+[[ ${THOTH_DRY_RUN} -ne 0 && -f requirements.txt ]] && cp requirements.txt ../
+
+function restore_lock() {
+  [[ -f ../Pipfile.lock ]] && cp ../Pipfile.lock .
+  [[ -f ../requirements.txt ]] && cp ../requirements.txt .
+}
+
+[[ ${THOTH_FORCE_GENERATE_CONFIG} -ne 0 ]] && {
+  rm -f .thoth.yaml
+  thamos config --no-interactive
+}
+
+[[ ${THOTH_CONFIG_CHECK} -ne 0 ]] && {
+  thamos check || {
+    if [[ ${THOTH_ERROR_FALLBACK} -ne 0 ]]; then
+      echo ">>> Check of the configuration file failed, proceeding with the installation process based on the error fallback flag"
+    else
+      echo ">>> Aborting build as Thoth's configuration check failed; you can suppress the failure by providing THOTH_ERROR_FALLBACK=1" >&2
+      exit 1
+    fi
+  }
+}
+
+[[ ${THOTH_ADVISE} -ne 0 ]] && {
+  if [[ ${THOTH_FROM_MASTER} -eq 1 ]]; then
+      pip3 install --force-reinstall -U git+https://github.com/thoth-station/thamos || exit 1
+      pip3 install --force-reinstall -U git+https://github.com/thoth-station/invectio || exit 1
+  fi
+
+  echo ">>> Thoth s2i builder image version: ${THOTH_S2I_VERSION}"
+  echo ">>> Performing hardware and software discovery..."
+  thamos config --no-interactive || exit 1
+  echo ">>> Thoth's configuration file after hardware and software discovery:"
+  cat .thoth.yaml | /usr/bin/python3 -c "import yaml; import json; import sys; json.dump(yaml.safe_load(sys.stdin), sys.stdout, indent=2);"
+  echo -e "\n>>> Asking Thoth for advise..."
+  if [[ ${THOTH_DRY_RUN} -eq 0 ]]; then
+    thamos advise || {
+      if [[ ${THOTH_ERROR_FALLBACK} -ne 0 ]]; then
+        echo ">>> Thoth stack analysis failed with the following log:"
+        thamos log
+        echo ">>> Restoring previous requirements lock"
+        restore_lock
+      else
+        if [[ -f ".thoth_last_analysis_id" ]]; then
+          echo ">>> Thoth stack analysis failed with the following log:"
+          thamos log
+        fi
+
+        echo ">>> Thoth stack analysis failed, this build will fail shortly; you can suppress this failure by providing THOTH_ERROR_FALLBACK=1" >&2
+        exit 1
+      fi
+    }
+  else
+    thamos advise --no-wait || {
+      [[ ${THOTH_ERROR_FALLBACK} -eq 0 ]] && exit 1
+    }
+  fi
+} || {
+  echo ">>> Thoth advises are not activated"
+}
+
+# Restore previous lock, do not use the original one on dry run.
+[[ ${THOTH_DRY_RUN} -ne 0 ]] && {
+  echo ">>> Restoring previous requirements lock as THOTH_DRY_RUN was set" >&2
+  restore_lock
+}
+
+# Show lock on debug.
+[[ ${THOTH_ASSEMBLE_DEBUG} -ne 0 && -f Pipfile.lock ]] && cat Pipfile.lock
+[[ ${THOTH_ASSEMBLE_DEBUG} -ne 0 && -f requirements.txt ]] && cat requirements.txt
+
+[[ ${THOTH_PROVENANCE_CHECK} -ne 0 ]] && {
+  if [[ ${THOTH_ADVISE} -eq 0 && ${THOTH_DRY_RUN} -eq 0 ]]; then
+    echo ">>> Expanding Thoth's configuration file..."
+    thamos config --no-interactive || exit 1
+    echo ">>> Thoth's configuration file after expansion:"
+    cat .thoth.yaml | /usr/bin/python3 -c "import yaml; import json; import sys; json.dump(yaml.safe_load(sys.stdin), sys.stdout, indent=2);"
+    echo -e "\n>>> Asking Thoth for provenance check..."
+    thamos provenance-check || {
+      [[ ${THOTH_ERROR_FALLBACK} -eq 0 ]] && exit 1
+    }
+  else
+    echo ">>> Provenance checks skipped as the lock file used is from Thoth"
+  fi
+}
+
+popd
+
+# Uncomment if you want to use this script solely in an s2i as an extension:
+#exec /usr/libexec/s2i/assemble
+#
+# ------------------------>% Thoth related content %<------------------------
+#
