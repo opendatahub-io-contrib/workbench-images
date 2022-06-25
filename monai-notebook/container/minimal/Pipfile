@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+black = "==21.12b0"
+elyra-python-editor-extension = "==3.9.1"
+jupyter_kernel_gateway = "~=2.5.0"
+jupyter-nbrequirements = "*"
+jupyterhub = "~=1.5.0"
+jupyterlab = "~=3.4.2"
+jupyterlab-git = "~=0.37.0"
+notebook = "~=6.4.0"
+supervisor = "~=4.2.0"
+
+[requires]
+python_version = "3.9"

@@ -1,0 +1,8 @@
+check:
+  - thoth-build
+build:
+  build-stratergy: Dockerfile
+  registry: "quay.io"
+  registry-org: "modh"
+  registry-project: "s2i-minimal-py38-notebook"
+  registry-secret: "modh-pusher-secret"
