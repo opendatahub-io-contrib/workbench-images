@@ -1,0 +1,40 @@
+{
+  "title": "Streamlit Menu",
+  "description": "Streamlit Menu settings.",
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-streamlit-menu",
+        "label": "Streamlit",
+        "rank": 80,
+        "items": [
+          {
+            "command": "jlab-odh:streamlit-select",
+            "args": {
+              "origin": "from the menu"
+            }
+          }
+        ]
+      }
+    ],
+    "context": [
+      {
+        "type": "separator",
+        "selector": ".jp-DirListing-item[data-file-type=\"python\"]",
+        "rank": 99
+      },
+      {
+        "command": "jlab-odh:streamlit-context",
+        "selector": ".jp-DirListing-item[data-file-type=\"python\"]",
+        "rank": 100
+      },
+      {
+        "type": "separator",
+        "selector": ".jp-DirListing-item[data-file-type=\"python\"]",
+        "rank": 101
+      }
+    ]
+  },
+  "additionalProperties": false,
+  "type": "object"
+}
