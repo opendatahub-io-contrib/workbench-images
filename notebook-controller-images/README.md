@@ -47,7 +47,7 @@ Notes:
 
 ```mermaid
 graph TB
-    subgraph Main tree
+    subgraph Main Tree
     %% base
     ubi9py39(UBI9 Python 3.9)-->base-ubi9py39
     base-ubi9py39("Base<br/>(s2i-base-ubi9-py39)")
@@ -88,8 +88,8 @@ graph TB
 graph LR
     subgraph CentOS Stream 9 Python 3.9 Family
     centosstream9(CentOS Stream 9)-->base-centosstream9py39
-    base-centosstream9py39("Base<br/>(c9s py39)")-->rstudio-ubi8
-    rstudio-ubi8("RStudio<br/>(c9s py39)")
+    base-centosstream9py39("Base<br/>(s2i-base-cs9-py39)")-->rstudio-ubi8
+    rstudio-ubi8("RStudio<br/>(s2i-rstudio-cs9-py39)")
     end
 ```
 
@@ -97,7 +97,7 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph Main tree
+    subgraph Main Tree
     %% base
     ubi8py38(UBI8 Python 3.8)-->base-ubi8py38
     base-ubi8py38("Base<br/>(s2i-base-ubi8-py38)")
@@ -130,18 +130,4 @@ graph TB
     base-ubi8py38-cuda-devel-cudnn("CUDA Devel cuDNN<br/>(s2i-base-ubi8-py38-cuda-devel-cudnn)")
     end
 
-```
-
-### UBI8 Python 3.9 Tree
-
-```mermaid
-graph LR
-    subgraph UBI8 Python 3.9 Family
-    ubi8py39(UBI8 Python 3.9)-->base-ubi8py39
-    base-ubi8py39("Base<br/>(ubi8 py39)")-->minimalnb-ubi8py39
-    base-ubi8py39-->vscode-ubi8
-    minimalnb-ubi8py39("Minimal Notebook<br/>(ubi8 py39)")-->datascience-ubi8py39
-    datascience-ubi8py39("DataScience Notebook<br/>(ubi8 py39)")
-    vscode-ubi8("VSCode<br/>(ubi8 py39)")
-    end
 ```
