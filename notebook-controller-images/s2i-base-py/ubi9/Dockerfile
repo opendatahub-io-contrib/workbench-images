@@ -21,9 +21,9 @@ USER 0
 # This will avoid people forgetting to set no-cache-dir when building images
 ENV PIP_NO_CACHE_DIR=1
 
-# RHEL7 base images automatically set these envvars to run scl_enable. RHEl8
+# RHEL7 base images automatically set these envvars to run scl_enable. RHEl8+
 # images, however, don't as most images don't need SCLs any more. But we want
-# to run it even on RHEL8, because we set the virtualenv environment as part of
+# to run it even on RHEL8+, because we set the virtualenv environment as part of
 # that script
 ENV BASH_ENV=${APP_ROOT}/etc/scl_enable \
     ENV=${APP_ROOT}/etc/scl_enable \
