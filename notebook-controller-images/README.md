@@ -26,9 +26,13 @@ JupyterLab Notebook images with standard datascience packages, in different flav
 - Datascience Notebook image on UBI9 with Python 3.9: [s2i-datascience-notebook-ubi9-py39](https://quay.io/repository/guimou/s2i-datascience-notebook-ubi9-py39)
 - Datascience Notebook image on UBI8 with Python 3.8: [s2i-datascience-notebook-ubi8-py38](https://quay.io/repository/guimou/s2i-datascience-notebook-ubi8-py38)
 
-### RStudio images
+### RStudio image
 
 - RStudio with R 4.1: [s2i-rstudio-cs9-py39](https://quay.io/repository/guimou/s2i-rstudio-cs9-py39)
+
+### Code-Server image
+
+- Code-Server v4.5.1: [s2i-code-server-cs9-py39](https://quay.io/repository/guimou/s2i-code-server-cs9-py39)
 
 ## CUDA images
 
@@ -76,6 +80,8 @@ graph TB
     base-ubi9py39-->minimal-ubi9py39
     minimal-ubi9py39("Minimal Notebook<br/>(s2i-minimal-notebook-ubi9-py39)")-->datascience-ubi9py39
     datascience-ubi9py39("DataScience Notebook<br/>(s2i-datascience-notebook-ubi9-py39)")
+    base-ubi9py39-->code-server-ubi9py39
+    code-server-ubi9py39("Code-Server<br/>(s2i-code-server-ubi9-py39)")
 
     %% CUDA images
     base-ubi9py39-.->|Through the CUDA build chain|base-cuda-ubi9py39
