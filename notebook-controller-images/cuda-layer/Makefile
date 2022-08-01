@@ -1,9 +1,11 @@
-.PHONY: default ubi8-py38 
+.PHONY: default ubi9-py39 cs9-py39 ubi8-py38 
 
 TAG ?= $(shell git describe --tags --always --dirty)
 
 default:
 	@echo "Options are:"
+	@echo "ubi9-py39 : builds all CUDA images for the ubi9-py39 family"
+	@echo "cs9-py39 : builds all CUDA images for the cs9-py39 family"
 	@echo "ubi8-py38 : builds all CUDA images for the ubi8-py38 family"
 	@echo "---"
 	@echo "Please specify the BASE image with BASE_IMAGE= and the images tags with TAG=..."
@@ -22,3 +24,10 @@ ubi9-py39:
 	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=s2i-base-ubi9-py39-cuda-runtime:${TAG} -t s2i-base-ubi9-py39-cuda-runtime-cudnn:${TAG} .
 	cd devel && podman build --build-arg=BASE_IMAGE=s2i-base-ubi9-py39-cuda-runtime:${TAG} -t s2i-base-ubi9-py39-cuda-devel:${TAG} .
 	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=s2i-base-ubi9-py39-cuda-devel:${TAG} -t s2i-base-ubi9-py39-cuda-devel-cudnn:${TAG} .
+
+cs9-py39:
+	cd base && podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} -t s2i-base-cs9-py39-cuda-base:${TAG} .
+	cd runtime && podman build --build-arg=BASE_IMAGE=s2i-base-cs9-py39-cuda-base:${TAG} -t s2i-base-cs9-py39-cuda-runtime:${TAG} .
+	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=s2i-base-cs9-py39-cuda-runtime:${TAG} -t s2i-base-cs9-py39-cuda-runtime-cudnn:${TAG} .
+	cd devel && podman build --build-arg=BASE_IMAGE=s2i-base-cs9-py39-cuda-runtime:${TAG} -t s2i-base-cs9-py39-cuda-devel:${TAG} .
+	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=s2i-base-cs9-py39-cuda-devel:${TAG} -t s2i-base-cs9-py39-cuda-devel-cudnn:${TAG} .
