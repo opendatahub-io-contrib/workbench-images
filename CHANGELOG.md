@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Monai notebook in the `notebook-controller-images` line. As it's not thoroughly tested it's still not officially released.
+
+## [0.0.12] - 2022-08-04
+
+### Added
+
 - New organization of images for upcoming Kubeflow Notebook Controller
 - Base, Minimal, Data Science, Code-Server and RStudio images available in the new `notebook-controller-images` line
 

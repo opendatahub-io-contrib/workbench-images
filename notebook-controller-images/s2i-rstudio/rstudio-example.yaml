@@ -26,5 +26,5 @@ spec:
               protocol: TCP
           imagePullPolicy: Always
           serviceAccountName: default
-          image: quay.io/guimou/s2i-rstudio-c9s-py39:0.0.1
+          image: quay.io/guimou/s2i-rstudio-c9s-py39:latest
           workingDir: /opt/app-root/src
