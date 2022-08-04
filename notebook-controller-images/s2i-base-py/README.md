@@ -11,17 +11,11 @@ make ubi9-py39 TAG=0.0.1
 Build example - CentOS Stream 9 with Python 3.9:
 
 ```bash
-make cs9-py39 TAG=0.0.1
+make c9s-py39 TAG=0.0.1
 ```
 
 Build example - UBI8 with Python 3.8:
 
 ```bash
 make ubi8-py38 TAG=0.0.1
-```
-
-Build example - UBI8 with Python 3.9:
-
-```bash
-make ubi8-py39 TAG=0.0.1
 ```

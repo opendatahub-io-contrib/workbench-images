@@ -1,0 +1,27 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-desc: >-
+      JupyterLab notebook image with Monai and Streamlit.
+    opendatahub.io/notebook-image-name: Generic DataScience notebook with Monai and Streamlit
+    opendatahub.io/notebook-image-url: 'https://github.com/guimou/custom-notebooks/tree/main/cuda-pytorch-streamlit-notebook'
+  name: s2i-cuda-pytorch-streamlit-notebook
+  labels:
+    component.opendatahub.io/name: jupyterhub
+    opendatahub.io/component: 'true'
+    opendatahub.io/notebook-image: 'true'
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations:
+        opendatahub.io/notebook-python-dependencies: >-
+          [{"name":"Monai","version":"0.9.0"},{"name":"Streamlit","version":"1.9.2"},{"name":"Jupyter Server Proxy","version":"3.2.1"}]
+        opendatahub.io/notebook-software: '[{"name":"BYO Notebook Image - Monai","version":"0.9.0"},{"name":"Python","version":"3.9.2"},{"name":"CUDA","version":"11.6.2"}]'
+      from:
+        kind: DockerImage
+        name: 'quay.io/guimou/s2i-cuda-pytorch-streamlit-notebook:latest'
+      referencePolicy:
+        type: Source

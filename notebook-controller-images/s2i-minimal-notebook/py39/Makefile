@@ -1,11 +1,16 @@
-.PHONY: default ubi8-py39
+.PHONY: default ubi8-py39 ubi9-py39 c9s-py39
 
 TAG ?= $(shell git describe --tags --always --dirty)
 
 default:
 	@echo "Options are:"
-	@echo "ubi8-py39 : builds an image based on UBI9 with Python 3.9"
-	@echo "ubi8-py39 : builds an image based on UBI8 with Python 3.9"
+	@echo "Standard images:"
+	@echo "ubi9-py39 : builds an image based on UBI9 with Python 3.9"
+	@echo "c9s-py39 : builds an image based on CentOS Stream 9 with Python 3.9"
+	@echo ""
+	@echo "CUDA images:"
+	@echo "cuda-ubi9-py39 : builds an image based on UBI9 with Python 3.9"
+	@echo "cuda-c9s-py39 : builds an image based on CentOS Stream 9 with Python 3.9"
 	@echo "---"
 	@echo "Please specify the base image with BASE_IMAGE=..."
 	@echo "Please specify the image tag with TAG=..."
@@ -13,5 +18,11 @@ default:
 ubi9-py39:
 	podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} --build-arg=UBI_VERSION=ubi9 --build-arg=PYTHON_VERSION=py39 --build-arg=PYTHON_VERSION_LONG="Python 3.9" -t s2i-minimal-notebook-ubi9-py39:${TAG} .
 
-ubi8-py39:
-	podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} --build-arg=UBI_VERSION=ubi8 --build-arg=PYTHON_VERSION=py39 --build-arg=PYTHON_VERSION_LONG="Python 3.9" -t s2i-minimal-notebook-ubi8-py39:${TAG} .
+c9s-py39:
+	podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} --build-arg=UBI_VERSION=c9s --build-arg=PYTHON_VERSION=py39 --build-arg=PYTHON_VERSION_LONG="Python 3.9" -t s2i-minimal-notebook-c9s-py39:${TAG} .
+
+cuda-ubi9-py39:
+	podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} --build-arg=UBI_VERSION=ubi9 --build-arg=PYTHON_VERSION=py39 --build-arg=PYTHON_VERSION_LONG="Python 3.9" -t s2i-minimal-cuda-notebook-ubi9-py39:${TAG} .
+
+cuda-c9s-py39:
+	podman build --build-arg=BASE_IMAGE=${BASE_IMAGE} --build-arg=UBI_VERSION=c9s --build-arg=PYTHON_VERSION=py39 --build-arg=PYTHON_VERSION_LONG="Python 3.9" -t s2i-minimal-cuda-notebook-c9s-py39:${TAG} .
