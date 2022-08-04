@@ -3,6 +3,8 @@
 S2I generic DataScience JupyterLab notebook image.
 
 Here is the list of the main packages included:
+
+```python
 black = "==21.12b0"
 bokeh = "~=2.4.3"
 boto3 = "==1.24.39"
@@ -24,3 +26,4 @@ scipy = "~=1.8.1"
 seaborn = "~=0.11.2"
 sqlalchemy = "~=1.4.39"
 streamlit = "~=1.11.1"
+```

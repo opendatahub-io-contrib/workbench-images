@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - New organization of images for upcoming Kubeflow Notebook Controller
-- Base, Minimal, Data Science and RStudio images available (but not officially released)
+- Base, Minimal, Data Science, Code-Server and RStudio images available in the new `notebook-controller-images` line
 
 ## [0.0.11] - 2022-06-24
 
