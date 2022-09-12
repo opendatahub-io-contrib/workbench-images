@@ -4,4 +4,4 @@
 #
 #    pip-compile --generate-hashes requirements.in
 #
-optapy==8.17.0a0
+optapy==8.23.0a0
