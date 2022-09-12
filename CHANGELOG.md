@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Monai notebook in the `notebook-controller-images` line. As it's not thoroughly tested it's still not officially released.
+- OptaPy custom image updated with OptaPy 8.23.0a0, s2i-minimal-data-science-optapy-notebook:v0.0.2
 
 ## [0.0.12] - 2022-08-04
 
