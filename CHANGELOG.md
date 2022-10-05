@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Monai notebook in the `notebook-controller-images` line. As it's not thoroughly tested it's still not officially released.
+- Nothing
+
+## [0.0.13] - 2022-10-05
+
+- Monai notebook in the `notebook-controller-images` line. As it's not thoroughly tested it's still not officially released
 - OptaPy custom image updated with OptaPy 8.23.0a0, s2i-minimal-data-science-optapy-notebook:v0.0.2
+- All images, including those in the `jupyterhub-images` folder are now compatible with the Kubeflow Notebook Controller
 
 ## [0.0.12] - 2022-08-04
 

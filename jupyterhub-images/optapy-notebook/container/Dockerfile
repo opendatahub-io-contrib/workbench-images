@@ -19,4 +19,4 @@ RUN micropipenv install --deploy
 WORKDIR /opt/app-root/src
 USER 1001
 
-CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0 --port=8080
+CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0

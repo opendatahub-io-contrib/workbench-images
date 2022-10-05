@@ -41,4 +41,4 @@ RUN sed -i 's/"Python 3 (ipykernel)"/"Python 3.9.10"/g' /opt/app-root/share/jupy
 WORKDIR /opt/app-root/src
 USER 1001
 
-CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0 --port=8080
+CMD /opt/app-root/bin/start-singleuser.sh --ip=0.0.0.0
