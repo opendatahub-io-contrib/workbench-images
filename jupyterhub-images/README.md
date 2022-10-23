@@ -20,4 +20,5 @@ Pre-built versions of the images are available:
 * R: https://quay.io/guimou/odh-minimal-data-science-r-notebook
 * SageMath: https://quay.io/guimou/s2i-minimal-data-science-sagemath-notebook
 * Streamlit: https://quay.io/guimou/s2i-generic-data-science-streamlit-notebook
-* Monai: https://quay.io/repository/guimou/s2i-monai-notebook
+* Monai: https://quay.io/guimou/guimou/s2i-monai-notebook
+* VSCode: https://quay.io/guimou/odh-generic-data-science-vscode-notebook

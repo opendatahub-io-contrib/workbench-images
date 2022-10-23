@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing
 
+## [0.0.14] - 2022-10-23
+
+- VSCode notebook in the `jupyterhub-images` folder. This is a JupyterLab Data Science notebook that also includes VSCode 4.7.1. This image works both with JupyterHub and current ODH/RHODS dashboard version (contrary to the image in `notebook-controller-images` that works only with the Kubeflow Notebook Controller and is not compatible with ODH/RHODS dashboard).
+
 ## [0.0.13] - 2022-10-05
 
 - Monai notebook in the `notebook-controller-images` line. As it's not thoroughly tested it's still not officially released

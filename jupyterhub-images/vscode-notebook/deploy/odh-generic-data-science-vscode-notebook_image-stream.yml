@@ -1,0 +1,29 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-desc: >-
+      JupyterLab Data Science notebook image with VS Code.
+    opendatahub.io/notebook-image-name: VS Code Notebook
+    opendatahub.io/notebook-image-order: '200'
+    opendatahub.io/notebook-image-url: 'https://github.com/guimou/custom-notebooks/tree/main/vscode-notebook'
+  name: odh-generic-data-science-vscode-notebook
+  labels:
+    component.opendatahub.io/name: jupyterhub
+    opendatahub.io/component: 'true'
+    opendatahub.io/notebook-image: 'true'
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations:
+        opendatahub.io/notebook-python-dependencies: >-
+          [{"name":"VS Code","version":"4.7.1"}]
+        opendatahub.io/notebook-software: '[{"name":"BYO Notebook Image -
+          VSCode","version":"4.7.1"},{"name":"VSCode","version":"4.7.1"}]'
+      from:
+        kind: DockerImage
+        name: 'quay.io/guimou/odh-generic-data-science-vscode-notebook:latest'
+      referencePolicy:
+        type: Source
