@@ -32,9 +32,13 @@ JupyterLab Notebook images with standard datascience packages, in different flav
 
 - RStudio with R 4.1: [s2i-rstudio-c9s-py39](https://quay.io/repository/guimou/s2i-rstudio-c9s-py39)
 
+NOTE: This image works with the Kubeflow Notebook Controller, but the ODH or RHODS dashboard launcher cannot yet use it.
+
 ### Code-Server image
 
 - Code-Server v4.5.1: [s2i-code-server-ubi9-py39](https://quay.io/repository/guimou/s2i-code-server-ubi9-py39)
+
+NOTE: This image works with the Kubeflow Notebook Controller, but the ODH or RHODS dashboard launcher cannot yet use it.
 
 ## CUDA images
 
