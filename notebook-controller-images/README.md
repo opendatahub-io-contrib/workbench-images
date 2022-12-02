@@ -28,6 +28,12 @@ JupyterLab Notebook images with standard datascience packages, in different flav
 - Datascience Notebook image on CentOS Stream 9 with Python 3.9: [s2i-datascience-notebook-c9s-py39](https://quay.io/repository/guimou/s2i-datascience-notebook-c9s-py39)
 - Datascience Notebook image on UBI8 with Python 3.8: [s2i-datascience-notebook-ubi8-py38](https://quay.io/repository/guimou/s2i-datascience-notebook-ubi8-py38)
 
+### Spark image
+
+Notebook based on the Data Science notebook, adding Spark capabilities.
+
+- Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on s2i-datascience-notebook-ubi9-py39: [s2i-spark-notebook-ubi9-py39](https://quay.io/repository/guimou/s2i-spark-notebook-ubi9-py39)
+
 ### RStudio image
 
 - RStudio with R 4.1: [s2i-rstudio-c9s-py39](https://quay.io/repository/guimou/s2i-rstudio-c9s-py39)

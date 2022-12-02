@@ -85,6 +85,7 @@ RUN yum -y install java-$JAVA_VERSION-openjdk maven &&\
 
 # Copy Spark from builder stage
 COPY --from=builder /spark ${PKG_ROOT}/spark-${SPARK_VERSION}
+COPY --from=builder /spark/kubernetes/dockerfiles/spark/entrypoint.sh /opt/app-root/bin
 
 # Copy Hadoop from builder stage
 COPY --from=builder /hadoop ${PKG_ROOT}/hadoop-${HADOOP_VERSION}
