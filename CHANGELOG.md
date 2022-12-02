@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing
 
+## [0.0.15] - 2022-12-02
+
+- Spark notebook in the `notebook-controller-images` folder. This is a JupyterLab Data Science notebook with Spark 3.3.1 and Hadoop 3.3.4.
+- Also includes RBAC and examples for launching Spark workloads directly from the notebook.
+
 ## [0.0.14] - 2022-10-23
 
 - VSCode notebook in the `jupyterhub-images` folder. This is a JupyterLab Data Science notebook that also includes VSCode 4.7.1. This image works both with JupyterHub and current ODH/RHODS dashboard version (contrary to the image in `notebook-controller-images` that works only with the Kubeflow Notebook Controller and is not compatible with ODH/RHODS dashboard).
