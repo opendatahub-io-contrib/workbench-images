@@ -12,7 +12,7 @@ Different flavors are available, based on UBI8, UBI9 or Centos Stream 9, with di
 - [Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:base-c9s-py39_2023a_latest)
 - [Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:base-ubi8-py38_2023a_latest)
 
-*[source](base/)*
+*[source](base)*
 
 ## CUDA base images
 
@@ -27,7 +27,7 @@ NOTE: the images listed here are the Runtime+CuDNN versions. The intermediate im
 - [CUDA Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-c9s-py39_2023a_latest)
 - [CUDA Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-ubi8-py38_2023a_latest)
 
-*[source](cuda-layer/)*
+*[source](cuda-layer)*
 
 ## Jupyter Images
 
@@ -43,7 +43,7 @@ Images derive from the Base image, with different flavors:
 - [Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-c9s-py39_2023a_latest)
 - [Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi8-py38_2023a_latest)
 
-*[source](jupyter/minimal/)*
+*[source](jupyter/minimal)*
 
 ### Datascience Notebook images
 
@@ -61,7 +61,7 @@ Notebook based on the UBI9 Data Science notebook, adding VSCode ([Code-Server](h
 
 - [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-code-server-ubi9-py39_2023a_latest)
 
-*[source](jupyter/code-server)*
+*[source](jupyter/datascience-code-server)*
 
 ### Datascience + RStudio Notebook image
 
@@ -69,7 +69,7 @@ Notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel f
 
 - [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-ubi9-py39_2023a_latest)
 
-*[source](jupyter/rstudio)*
+*[source](jupyter/datascience-rstudio)*
 
 ### Spark image
 
@@ -117,7 +117,7 @@ CUDA-enabled notebook based on the UBI9 Data Science notebook, adding VSCode ([C
 
 - [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-code-server-ubi9-py39_2023a_latest)
 
-*[source](jupyter/datascience)*
+*[source](jupyter/datascience-code-server)*
 
 ### CUDA Datascience + RStudio Notebook image
 
@@ -125,7 +125,7 @@ CUDA-enabled notebook based on the Centos Stream9 Data Science notebook, adding 
 
 - [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-ubi9-py39_2023a_latest)
 
-*[source](jupyter/rstudio)*
+*[source](jupyter/datascience-rstudio)*
 
 ### CUDA Monai Notebook image
 
@@ -142,7 +142,7 @@ NOTE: The following images are Standalone VSCode (Code-Server) images. **The ODH
 - [VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:code-server-ubi9-py39_2023a_latest)
 - [CUDA VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-code-server-ubi9-py39_2023a_latest)
 
-*[source](code-server/)*
+*[source](code-server)*
 
 ## RStudio
 
@@ -150,6 +150,8 @@ NOTE: The following images are Standalone RStudio images. **The ODH or RHODS das
 
 - [RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:rstudio-c9s-py39_2023a_latest)
 - [CUDA RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-rstudio-c9s-py39_2023a_latest)
+
+*[source](rstudio)*
 
 ## Development
 

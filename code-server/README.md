@@ -9,7 +9,7 @@ Images are available at [quay.io/opendatahub-io-contrib/workbench-images](https:
 Build example from UBI9 with Python 3.9:
 
 ```bash
-make ubi9-py39 RELEASE=dev DATE=20221206
+make ubi9-py39 RELEASE=dev DATE=20230101
 ```
 
 ## CUDA image
@@ -17,5 +17,5 @@ make ubi9-py39 RELEASE=dev DATE=20221206
 Build example from UBI9 with Python 3.9 with CUDA:
 
 ```bash
-make cuda-ubi9-py39 RELEASE=dev DATE=20221206
+make cuda-ubi9-py39 RELEASE=dev DATE=20230101
 ```

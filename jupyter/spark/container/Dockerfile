@@ -71,15 +71,15 @@ ARG SPARK_VERSION=3.3.1
 ARG HADOOP_VERSION=3.3.4
 ARG JMX_PROMETHEUS_JAVAAGENT_VERSION=0.17.0
 
-LABEL name="aprk-${UBI_VERSION}-${PYTHON_VERSION}:latest" \
-    summary="S2I Spark with ${PYTHON_VERSION_LONG} image based on ${UBI_VERSION}" \
-    description="Spark notebook with ${PYTHON_VERSION_LONG}, Source-to-Image from ${UBI_VERSION}" \
-    io.k8s.description="Spark notebook with ${PYTHON_VERSION_LONG}, Source-to-Image from ${UBI_VERSION}" \
-    io.k8s.display-name="S2I Spark notebook with ${PYTHON_VERSION_LONG} ${UBI_VERSION} image" \
+LABEL name="workbench-images:${CUDA}jupyter-spark-${UBI_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}" \
+    summary="Datascience + Spark JupyterLab notebook with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
+    description="Datascience + Spark JupyterLab notebook with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
+    io.k8s.description="Datascience + Spark JupyterLab notebook with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION} for ODH or RHODS" \
+    io.k8s.display-name="Datascience + Spark JupyterLab notebook with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
     authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
-    io.openshift.s2i.build.commit.ref="main" \
-    io.openshift.s2i.build.source-location="https://github.com/opendatahub-contrib/workbench-images/notebook-controller-images/spark" \
-    io.openshift.s2i.build.image="https://quay.io/guimou/spark-${UBI_VERSION}-${PYTHON_VERSION}"
+    io.openshift.build.commit.ref="${RELEASE}" \
+    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images/jupyter/spark" \
+    io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:${CUDA}jupyter-spark-${UBI_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}"
 
 USER 0
 

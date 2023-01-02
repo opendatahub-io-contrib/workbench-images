@@ -7,13 +7,13 @@ This recipe is tagged as Python 3.9 because of the Pipfile that fixes the Python
 Build example from UBI9 with Python 3.9:
 
 ```bash
-make ubi9-py39 RELEASE=dev DATE=20221206
+make ubi9-py39 RELEASE=dev DATE=20230101
 ```
 
 Build example from CentOS Stream 9 with Python 3.9:
 
 ```bash
-make c9s-py39 RELEASE=dev DATE=20221206
+make c9s-py39 RELEASE=dev DATE=20230101
 ```
 
 ## CUDA images
@@ -21,11 +21,11 @@ make c9s-py39 RELEASE=dev DATE=20221206
 Build example from UBI9 with Python 3.9 with CUDA:
 
 ```bash
-make cuda-ubi9-py39 RELEASE=dev DATE=20221206
+make cuda-ubi9-py39 RELEASE=dev DATE=20230101
 ```
 
 Build example from CentOS Stream 9 with Python 3.9 with CUDA:
 
 ```bash
-make cuda-c9s-py39 RELEASE=dev DATE=20221206
+make cuda-c9s-py39 RELEASE=dev DATE=20230101
 ```

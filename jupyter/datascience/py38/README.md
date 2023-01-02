@@ -7,7 +7,7 @@ This recipe is tagged as Python 3.8 because of the Pipfile in the minimal folder
 Build example  from UBI8 with Python 3.8:
 
 ```bash
-make ubi8-py38 RELEASE=dev DATE=20221206
+make ubi8-py38 RELEASE=dev DATE=20230101
 ```
 
 ## CUDA images
@@ -15,5 +15,5 @@ make ubi8-py38 RELEASE=dev DATE=20221206
 Build example from UBI8 with Python 3.8  with CUDA:
 
 ```bash
-make cuda-ubi8-py38 RELEASE=dev DATE=20221206
+make cuda-ubi8-py38 RELEASE=dev DATE=20230101
 ```
