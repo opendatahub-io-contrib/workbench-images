@@ -1,0 +1,38 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+# Datascience and useful extensions
+"elyra[kfp-tekton]" = "~=3.14.1"
+black = "~=22.12.0"
+boto3 = "~=1.26.41"
+jupyter-bokeh = "~=3.0.5"
+jupyter-contrib-nbextensions = "~=0.7.0"
+jupyterlab-lsp = "~=3.10.2"
+jupyterlab-tabnine = "~=0.0.24"
+jupyterlab-widgets = "~=3.0.5"
+kafka-python = "~=2.0.2"
+matplotlib = "~=3.6.2"
+numpy = "~=1.24.1"
+pandas = "~=1.5.2"
+plotly = "~=5.11.0"
+scikit-learn = "~=1.2.0"
+scipy = "~=1.9.3"
+streamlit = "~=1.16.0"
+
+#  Parent image requirements to maintain cohesion
+jupyter-resource-usage = "~=0.6.4"
+jupyter-server-proxy = "~=3.2.2"
+jupyterlab-git = "~=0.41.0"
+nbdime = "~=3.1.1"
+nbgitpuller = "~=1.1.1"
+# ---
+thamos = "~=1.29.1"
+wheel = "~=0.38.4"
+
+[requires]
+python_version = "3.9"

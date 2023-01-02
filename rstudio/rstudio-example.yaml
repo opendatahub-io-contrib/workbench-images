@@ -1,0 +1,30 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Notebook
+metadata:
+  annotations:
+    notebooks.opendatahub.io/inject-oauth: 'true'
+  name: rstudio
+  namespace: opendatahub
+  labels:
+    app: rstudio
+spec:
+  template:
+    spec:
+      containers:
+        - env: []
+          name: rstudio
+          resources:
+            limits:
+              cpu: '2'
+              memory: 2Gi
+            requests:
+              cpu: '1'
+              memory: 1Gi
+          ports:
+            - containerPort: 8888
+              name: notebook-port
+              protocol: TCP
+          imagePullPolicy: Always
+          serviceAccountName: default
+          image: quay.io/guimou/rstudio-c9s-py39:latest
+          workingDir: /opt/app-root/src

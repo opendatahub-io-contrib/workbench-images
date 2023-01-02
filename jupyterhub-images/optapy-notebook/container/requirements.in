@@ -1,6 +1,0 @@
---index-url https://pypi.org/simple
-#
-# Default dependencies
-#
-
-# Empty now as OptaPy is in pre-release which is not accepted by pip-compile
