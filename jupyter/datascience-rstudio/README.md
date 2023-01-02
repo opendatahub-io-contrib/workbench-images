@@ -7,7 +7,7 @@ Datascience notebook image adding an R Kernel and RStudio to the JupyterLab laun
 Build example from Centos Stream 9 with Python 3.9:
 
 ```bash
-make c9s-py39 RELEASE=dev DATE=20221206
+make c9s-py39 RELEASE=dev DATE=20230101
 ```
 
 ## CUDA images
@@ -15,5 +15,5 @@ make c9s-py39 RELEASE=dev DATE=20221206
 Build example from Centos Stream 9 with Python 3.9 with CUDA:
 
 ```bash
-make c9s-ubi9-py39 RELEASE=dev DATE=20221206
+make c9s-ubi9-py39 RELEASE=dev DATE=20230101
 ```

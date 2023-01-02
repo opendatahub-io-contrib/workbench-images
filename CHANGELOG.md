@@ -2,12 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 
 ## [Unreleased]
 
 - Nothing
+
+## [2023a] - 2023-01-02
+
+- Migration of repository to opendatahub-contrib organization
+- Modification of versioning scheme to allow multiple parallel releases and automated regular updates as described [here](README.md#naming-convention)
+- Full refactoring of the repository for clarity
+- Adding tests to the Makefiles to validate images
+- Release of 2023a, creation of associated support branch
 
 ## [0.0.15] - 2022-12-02
 

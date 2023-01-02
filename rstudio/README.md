@@ -9,7 +9,7 @@ A standalone deployment file using the Kubeflow Notebook Controller is available
 Build example from CentOS Stream 9 with Python 3.9:
 
 ```bash
-make c9s-py39 RELEASE=dev DATE=20221206
+make c9s-py39 RELEASE=dev DATE=20230101
 ```
 
 ## CUDA images
@@ -17,5 +17,5 @@ make c9s-py39 RELEASE=dev DATE=20221206
 Build example from CentOS Stream 9 with Python 3.9 with CUDA:
 
 ```bash
-make cuda-c9s-py39 RELEASE=dev DATE=20221206
+make cuda-c9s-py39 RELEASE=dev DATE=20230101
 ```

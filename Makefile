@@ -1,4 +1,4 @@
-.PHONY: default ubi8-py38 ubi9-py39 c9s-py39 all
+.PHONY: default ubi8-py38 ubi9-py39 c9s-py39 all build-all refresh-pipfile-lock
 
 RELEASE ?= $(shell git describe --tags --always --dirty || echo 'dev')
 DATE ?= $(shell date +'%Y%m%d')
@@ -9,18 +9,20 @@ default:
 	@echo "and their CUDA versions for different platforms."
 	@echo "It also builds Datascience + VSCode or RStudio as well as their standalone versions"
 	@echo "Options are:"
-	@echo "all : build all flavors of images"
-	@echo "ubi9-py39 : build images based on UBI9 with Python 3.9"
-	@echo "c9s-py39 : build images based on CentOS Stream 9 with Python 3.9"
-	@echo "ubi8-py38 : build images based on UBI8 with Python 3.9"
+	@echo "all : builds and pushed all flavors of images"
+	@echo "refresh-pipfile-lock : only refreshes the various Pipfile.lock"
+	@echo "ubi9-py39 : builds images based on UBI9 with Python 3.9"
+	@echo "c9s-py39 : builds images based on CentOS Stream 9 with Python 3.9"
+	@echo "ubi8-py38 : builds images based on UBI8 with Python 3.8"
 	@echo "push-all : push all images"
 	@echo "push-ubi9-py39 : push images based on UBI9 with Python 3.9"
 	@echo "push-c9s-py39 : push images based on CentOS Stream 9 with Python 3.9"
-	@echo "push-ubi8-py38 : push images based on UBI8 with Python 3.9"
+	@echo "push-ubi8-py38 : push images based on UBI8 with Python 3.8"
 	@echo "---"
 	@echo "Please specify:"
-	@echo " - the release number with RELEASE=... (defaults to 'dev')"
+	@echo " - the release number with RELEASE=... (defaults to git tag or 'dev')"
 	@echo " - the build date with DATE=... (defaults to current date)"
+	@echo " - the reepository to push to with REPO=... (defaults to 'quay.io/opendatahub-contrib/workbench-images')"
 
 all: refresh-pipfile-lock build-all push-all
 
