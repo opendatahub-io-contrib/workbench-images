@@ -8,9 +8,9 @@ LABEL name="workbench-images:base-ubi8-py38_${RELEASE}_${DATE}" \
     description="UBI8-Python 3.8 base for workbench images" \
     io.k8s.description="UBI8-Python 3.8 base for workbench images" \
     io.k8s.display-name="UBI8-Python 3.8 base for workbench images for ODH or RHODS" \
-    authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
+    authoritative-source-url="https://github.com/opendatahub-io-contrib/workbench-images" \
     io.openshift.build.commit.ref="${RELEASE}" \
-    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images/jupyter/base/ubi8" \
+    io.openshift.build.source-location="https://github.com/opendatahub-io-contrib/workbench-images/jupyter/base/ubi8" \
     io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:base-ubi8-py38_${RELEASE}_${DATE}"
 
 # This will avoid people forgetting to set no-cache-dir when building images

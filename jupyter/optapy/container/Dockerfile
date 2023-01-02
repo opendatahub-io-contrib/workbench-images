@@ -13,9 +13,9 @@ LABEL name="workbench-images:${CUDA}jupyter-optapy-${UBI_VERSION}-${PYTHON_VERSI
     description="Data Science + Optapy with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
     io.k8s.description="Data Science + Optapy with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION} for ODH or RHODS" \
     io.k8s.display-name="Data Science + Optapy with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
-    authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
+    authoritative-source-url="https://github.com/opendatahub-io-contrib/workbench-images" \
     io.openshift.build.commit.ref="${RELEASE}" \
-    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images/jupyter/optapy" \
+    io.openshift.build.source-location="https://github.com/opendatahub-io-contrib/workbench-images/jupyter/optapy" \
     io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:${CUDA}jupyter-optapy-${UBI_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}"
 
 USER 0

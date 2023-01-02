@@ -7,9 +7,9 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/opendatahub-contrib/workbench-images",
+  "homepage": "https://github.com/opendatahub-io-contrib/workbench-images",
   "bugs": {
-    "url": "https://github.com/opendatahub-contrib/workbench-images/issues"
+    "url": "https://github.com/opendatahub-io-contrib/workbench-images/issues"
   },
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
   "style": "style/index.css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opendatahub-contrib/workbench-images.git"
+    "url": "https://github.com/opendatahub-io-contrib/workbench-images.git"
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",

@@ -8,9 +8,9 @@ LABEL name="workbench-images:base-c9s-py39_${RELEASE}_${DATE}" \
     description="Centos Stream 9-Python 3.9 base for workbench images" \
     io.k8s.description="Centos Stream 9-Python 3.9 base for workbench images" \
     io.k8s.display-name="Centos Stream 9-Python 3.9 base for workbench images for ODH or RHODS" \
-    authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
+    authoritative-source-url="https://github.com/opendatahub-io-contrib/workbench-images" \
     io.openshift.build.commit.ref="${RELEASE}" \
-    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images/jupyter/base/c9s" \
+    io.openshift.build.source-location="https://github.com/opendatahub-io-contrib/workbench-images/jupyter/base/c9s" \
     io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:base-c9s-py39_${RELEASE}_${DATE}"
 
 # This will avoid people forgetting to set no-cache-dir when building images

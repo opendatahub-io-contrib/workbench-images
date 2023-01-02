@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2023a] - 2023-01-02
 
-- Migration of repository to opendatahub-contrib organization
+- Migration of repository to opendatahub-io-contrib organization
 - Modification of versioning scheme to allow multiple parallel releases and automated regular updates as described [here](README.md#naming-convention)
 - Full refactoring of the repository for clarity
 - Adding tests to the Makefiles to validate images

@@ -15,9 +15,9 @@ LABEL name="workbench-images:${CUDA}code-server-${UBI_VERSION}-${PYTHON_VERSION}
     description="VSCode with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
     io.k8s.description="VSCode with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION} for ODH or RHODS" \
     io.k8s.display-name="VSCode with ${PYTHON_VERSION_LONG} based on ${UBI_VERSION}" \
-    authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
+    authoritative-source-url="https://github.com/opendatahub-io-contrib/workbench-images" \
     io.openshift.build.commit.ref="${RELEASE}" \
-    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images/code-server" \
+    io.openshift.build.source-location="https://github.com/opendatahub-io-contrib/workbench-images/code-server" \
     io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:${CUDA}code-server-${UBI_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}"
 
 ####################
