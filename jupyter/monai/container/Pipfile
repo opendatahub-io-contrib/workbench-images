@@ -1,0 +1,51 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cu117"
+verify_ssl = true
+name = "pytorch"
+
+[dev-packages]
+
+[packages]
+# Monai-linked packages
+"monai[all]" = "~=1.1.0"
+monai-deploy-app-sdk = "~=0.5.0"
+opencv-python = "~=4.7.0"
+scikit-image = "~=0.19.3"
+torch = {version="~=1.13.1", index="pytorch"}
+torchvision = {version="~=0.14.1", index="pytorch"}
+
+#  Parent image requirements to maintain cohesion
+# Datascience and useful extensions
+"elyra[kfp-tekton]" = "~=3.14.1"
+black = "~=22.12.0"
+boto3 = "~=1.26.41"
+jupyter-bokeh = "~=3.0.5"
+jupyter-contrib-nbextensions = "~=0.7.0"
+jupyterlab-lsp = "~=3.10.2"
+jupyterlab-tabnine = "~=0.0.24"
+jupyterlab-widgets = "~=3.0.5"
+kafka-python = "~=2.0.2"
+matplotlib = "~=3.6.2"
+numpy = "~=1.24.1"
+pandas = "~=1.5.2"
+plotly = "~=5.11.0"
+scikit-learn = "~=1.2.0"
+scipy = "~=1.9.3"
+streamlit = "~=1.16.0"
+# ---
+jupyter-resource-usage = "~=0.6.4"
+jupyter-server-proxy = "~=3.2.2"
+jupyterlab-git = "~=0.41.0"
+nbdime = "~=3.1.1"
+nbgitpuller = "~=1.1.1"
+# ---
+thamos = "~=1.29.1"
+wheel = "~=0.38.4"
+
+[requires]
+python_version = "3.9"
