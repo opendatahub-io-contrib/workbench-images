@@ -67,7 +67,7 @@ Notebook based on the UBI9 Data Science notebook, adding VSCode ([Code-Server](h
 
 Notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel for Jupyter and RStudio.
 
-- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-ubi9-py39_2023a_latest)
+- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023a_latest)
 
 *[source](jupyter/datascience-rstudio)*
 
@@ -83,7 +83,7 @@ Notebook based on the UBI9 Data Science notebook, adding Spark/PySpark capabilit
 
 Notebook based on the UBI9 Data Science notebook, adding [OptaPy](https://www.optapy.org/optapy/latest/optapy-introduction/optapy-introduction.html) 8.31.1b0, the Python version of OptaPlanner.
 
-- [OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023a_latest)
+- [OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023a_latest)
 
 *[source](jupyter/optapy)*
 
@@ -123,7 +123,7 @@ CUDA-enabled notebook based on the UBI9 Data Science notebook, adding VSCode ([C
 
 CUDA-enabled notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel for Jupyter and RStudio.
 
-- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-ubi9-py39_2023a_latest)
+- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023a_latest)
 
 *[source](jupyter/datascience-rstudio)*
 
