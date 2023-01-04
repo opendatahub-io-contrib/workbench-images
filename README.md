@@ -35,7 +35,7 @@ All these images use JupyterLab as the main environment, which is started by def
 
 ### Minimal Notebook images
 
-Minimal JupyterLab Notebook image with additional basic packages. The list and version of included packages is available in the [README](minimal/README.md) file in the corresponding [folder](minimal/).
+Minimal JupyterLab Notebook image with additional basic packages. The list and version of included packages is available in the [README](jupyter/minimal/README.md) file in the corresponding [folder](jupyter/minimal/).
 
 Images derive from the Base image, with different flavors:
 
@@ -47,7 +47,7 @@ Images derive from the Base image, with different flavors:
 
 ### Datascience Notebook images
 
-JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](datascience/README.md) file in the corresponding [folder](datascience/).
+JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](jupyter/datascience/README.md) file in the corresponding [folder](jupyter/datascience/).
 
 - [Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi9-py39_2023a_latest)
 - [Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-c9s-py39_2023a_latest)
@@ -91,7 +91,7 @@ Notebook based on the UBI9 Data Science notebook, adding [OptaPy](https://www.op
 
 ### CUDA Minimal Notebook images
 
-CUDA-enabled Minimal JupyterLab Notebook image with additional basic packages. The list and version of included packages is available in the [README](minimal/README.md) file in the corresponding [folder](minimal/).
+CUDA-enabled Minimal JupyterLab Notebook image with additional basic packages. The list and version of included packages is available in the [README](jupyter/minimal/README.md) file in the corresponding [folder](jupyter/minimal/).
 
 Images derive from the Base image, with different flavors:
 
@@ -103,7 +103,7 @@ Images derive from the Base image, with different flavors:
 
 ### CUDA Datascience Notebook images
 
-CUDA-enabled JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](datascience/README.md) file in the corresponding [folder](datascience/).
+CUDA-enabled JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](jupyter/datascience/README.md) file in the corresponding [folder](jupyter/datascience/).
 
 - [CUDA Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi9-py39_2023a_latest)
 - [CUDA Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-c9s-py39_2023a_latest)
