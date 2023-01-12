@@ -123,7 +123,7 @@ CUDA-enabled notebook based on the UBI9 Data Science notebook, adding VSCode ([C
 
 CUDA-enabled notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel for Jupyter and RStudio.
 
-- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023a_latest)
+- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_2023a_latest)
 
 *[source](jupyter/datascience-rstudio)*
 
