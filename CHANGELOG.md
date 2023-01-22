@@ -2,11 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-
-
 ## [Unreleased]
 
-- Nothing
+- Update to the CUDA RStudio and Jupyter + RStudio images to include the CUDA toolkit. At it's only an enhancement that is fully compatible with prior versions, we are not creating a new specific release.
 
 ## [2023a] - 2023-01-02
 
