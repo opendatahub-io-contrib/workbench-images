@@ -24,6 +24,13 @@ LABEL name="workbench-images:${CUDA}rstudio-${UBI_VERSION}-${PYTHON_VERSION}_${R
 
 USER 0
 
+# R needs the CUDA toolkit and special flags to build Tensorflow and other packages
+RUN if [ "$CUDA" = "cuda-" ] ; then \
+        yum -y install cuda-toolkit-11-8 && \
+        yum -y clean all  --enablerepo='*'; \
+    fi
+ENV XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/cuda
+
 ENV R_VERSION=4.2.2
 
 # Install R
