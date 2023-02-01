@@ -72,9 +72,9 @@ validate-py39:
 	echo "=> Checking for RStudio ability to start..." ; \
 	podman run -d --network=host --name validation-container $$IMAGE ; \
 	for i in {1..6}; do \
-		nc -z localhost 8888 && break || sleep 5; \
+		nc -z localhost 8787 && break || sleep 5; \
 	done; \
-	nc -z localhost 8888 ; \
+	nc -z localhost 8787 ; \
 	if [ $$? -ne 0 ]; then \
 		echo "ERROR: Image $$IMAGE cannot start RStudio" ; \
 		fail=1; \

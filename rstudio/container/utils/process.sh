@@ -15,5 +15,8 @@ function start_process() {
 }
 
 function stop_process() {
+    echo "Stopping rstudio-server"
+    rstudio-server suspend-all
+    sleep 5 #Wait for the session to properly stop
     kill -TERM $PID
 }
