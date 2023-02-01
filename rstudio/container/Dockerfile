@@ -53,16 +53,16 @@ ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.2
 WORKDIR /tmp/
 
 # Install RStudio
-RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.07.2-576-x86_64.rpm && \
-    yum install -y rstudio-server-rhel-2022.07.2-576-x86_64.rpm && \
-    rm rstudio-server-rhel-2022.07.2-576-x86_64.rpm && \
+RUN wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.12.0-353-x86_64.rpm && \
+    yum install -y rstudio-server-rhel-2022.12.0-353-x86_64.rpm && \
+    rm rstudio-server-rhel-2022.12.0-353-x86_64.rpm && \
     yum -y clean all  --enablerepo='*'
 
 # Specific RStudio config and fixes
 RUN chmod 1777 /var/run/rstudio-server && \
     mkdir -p /usr/share/doc/R
 COPY rsession.conf /etc/rstudio/rsession.conf
-ENV RSTUDIO_USER_IDENTITY_DISPLAY=rstudio
+
 
 ########################################################
 # Install NGINX to proxy RStudio and pass probes check #
