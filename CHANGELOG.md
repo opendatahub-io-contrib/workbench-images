@@ -4,7 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-- Update to the CUDA RStudio and Jupyter + RStudio images to include the CUDA toolkit. At it's only an enhancement that is fully compatible with prior versions, we are not creating a new specific release.
+## [2023b] - 2023-02-01
+
+- Update to the CUDA RStudio and Jupyter + RStudio images to include the CUDA toolkit. This is necessary to install certain packages that are compiled in-place.
+- Update to RStudio and VSCode images (standalone versions). They are now fully compatible with the dashboard, so can be used as standard custom images. Idle culling also works with those images.
+- Addition of some packages:
+  - Minimal:
+    - jupyter-server-terminals ~=0.4.4 and jupyter-server ~=2.1.0: this will allow culling to work for terminals once enable on the notebook controller.
+- Updates of some packages versions:
+  - Minimal:
+    - jupyterlab ~=3.5.2 -> ~=3.5.3
+    - jupyter-resource-usage: ~=0.6.4 -> ~=0.7.0
+  - Datascience:
+    - matplotlib ~=3.6.2 -> ~=3.6.3
+    - pandas ~=1.5.2 -> ~=1.5.3
+    - plotly ~=5.11.0 -> ~=5.13.0
+    - scikit-learn ~=1.2.0 -> ~=1.2.1
+    - scipy ~=1.9.3 -> ~=1.10.0
+    - streamlit ~=1.16.0  -> ~=1.17.0
 
 ## [2023a] - 2023-01-02
 

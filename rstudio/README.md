@@ -1,8 +1,6 @@
 # RStudio image
 
-RStudio image.
-
-A standalone deployment file using the Kubeflow Notebook Controller is available: `rstudio-example.yaml`
+Standalone RStudio image.
 
 ## Standard images
 

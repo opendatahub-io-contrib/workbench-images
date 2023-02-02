@@ -69,14 +69,14 @@ validate-py39:
 			fi; \
 		fi; \
 	done ; \
-	echo "=> Checking for Jupyter ability to start..." ; \
+	echo "=> Checking for Code-Server ability to start..." ; \
 	podman run -d --network=host --name validation-container $$IMAGE ; \
 	for i in {1..6}; do \
-		nc -z localhost 8888 && break || sleep 5; \
+		nc -z localhost 8787 && break || sleep 5; \
 	done; \
-	nc -z localhost 8888 ; \
+	nc -z localhost 8787 ; \
 	if [ $$? -ne 0 ]; then \
-		echo "ERROR: Image $$IMAGE cannot start Jupyter" ; \
+		echo "ERROR: Image $$IMAGE cannot start Code-Server" ; \
 		fail=1; \
 	fi; \
 	echo "Removing container" ; \

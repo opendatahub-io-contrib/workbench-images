@@ -80,4 +80,4 @@ def _get_cmd(port):
     return(' '.join(cmd))
 
 if __name__ == "__main__":
-    print(_get_cmd(8888))
+    print(_get_cmd(8787))
