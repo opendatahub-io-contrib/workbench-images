@@ -22,7 +22,7 @@ default:
 	@echo "Please specify:"
 	@echo " - the release number with RELEASE=... (defaults to git tag or 'dev')"
 	@echo " - the build date with DATE=... (defaults to current date)"
-	@echo " - the reepository to push to with REPO=... (defaults to 'quay.io/opendatahub-contrib/workbench-images')"
+	@echo " - the repository to push to with REPO=... (defaults to 'quay.io/opendatahub-contrib/workbench-images')"
 
 all: refresh-pipfile-lock build-all push-all
 

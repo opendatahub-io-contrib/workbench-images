@@ -4,13 +4,67 @@
 
 Various images (Jupyter, RStudio, VSCode,...) to use with [Open Data Hub](http://opendatahub.io/) (ODH) or [Red Hat OpenShift Data Science](https://www.redhat.com/fr/technologies/cloud-computing/openshift/openshift-data-science) (RHODS).
 
+## TL;DR
+
+NOTE: base and CUDA buildchain images are not listed here, see below for details.
+
+### Minimal Jupyter notebook - JupyterLab 3.5.3
+
+| Image description | Pull address |
+|-------------------|--------------|
+|[Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi9-py39_2023b_latest|
+|[Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-c9s-py39_2023b_latest|
+|[Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi8-py38_2023b_latest|
+CUDA 11.8 + CuDNN 8.6.0 versions:
+|[CUDA Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi9-py39_2023b_latest|
+|[CUDA Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-c9s-py39_2023b_latest|
+|[CUDA Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi8-py38_2023b_latest|
+
+### Datascience Jupyter notebook
+
+| Image description | Pull address |
+|-------------------|--------------|
+|[Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi9-py39_2023b_latest|
+|[Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-c9s-py39_2023b_latest|
+|[Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi8-py38_2023b_latest|
+|[Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-code-server-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-code-server-ubi9-py39_2023b_latest|
+|[Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023b_latest|
+CUDA 11.8 + CuDNN 8.6.0 versions:
+|[CUDA Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi9-py39_2023b_latest|
+|[CUDA Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-c9s-py39_2023b_latest|
+|[CUDA Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi8-py38_2023b_latest|
+|[CUDA Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-code-server-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-code-server-ubi9-py39_2023b_latest|
+|[CUDA Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_2023b_latest|
+
+### VSCode 4.9.1
+
+| Image description | Pull address |
+|-------------------|--------------|
+|[VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:code-server-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:code-server-ubi9-py39_2023b_latest|
+|[CUDA VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-code-server-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-code-server-ubi9-py39_2023b_latest|
+
+### RStudio 2022.12.0 + R 4.2.2
+
+| Image description | Pull address |
+|-------------------|--------------|
+|[RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:rstudio-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:rstudio-c9s-py39_2023b_latest|
+|[CUDA RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-rstudio-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:cuda-rstudio-c9s-py39_2023b_latest|
+
+### Specialty images
+
+| Image description | Pull address |
+|-------------------|--------------|
+|[Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest|
+|[OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest|
+|[Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest|
+
 ## Base images
 
 Different flavors are available, based on UBI8, UBI9 or Centos Stream 9, with different versions of Python:
 
-- [Base image based on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:base-ubi9-py39_2023a_latest)
-- [Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:base-c9s-py39_2023a_latest)
-- [Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:base-ubi8-py38_2023a_latest)
+- [Base image based on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:base-ubi9-py39_2023b_latest)
+- [Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:base-c9s-py39_2023b_latest)
+- [Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:base-ubi8-py38_2023b_latest)
 
 *[source](base)*
 
@@ -23,9 +77,9 @@ CUDA-enabled versions of the Base images:
 
 NOTE: the images listed here are the Runtime+CuDNN versions. The intermediate images from the CUDA build chain are not listed here, but available in the repo, as well as development images that may be needed to create further images when building packages from source. See the tree graphs below for image names.
 
-- [CUDA Base image based on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-ubi9-py39_2023a_latest)
-- [CUDA Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-c9s-py39_2023a_latest)
-- [CUDA Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-ubi8-py38_2023a_latest)
+- [CUDA Base image based on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-ubi9-py39_2023b_latest)
+- [CUDA Base image based on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-c9s-py39_2023b_latest)
+- [CUDA Base image based on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-base-ubi8-py38_2023b_latest)
 
 *[source](cuda-layer)*
 
@@ -39,9 +93,9 @@ Minimal JupyterLab Notebook image with additional basic packages. The list and v
 
 Images derive from the Base image, with different flavors:
 
-- [Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi9-py39_2023a_latest)
-- [Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-c9s-py39_2023a_latest)
-- [Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi8-py38_2023a_latest)
+- [Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi9-py39_2023b_latest)
+- [Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-c9s-py39_2023b_latest)
+- [Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-minimal-ubi8-py38_2023b_latest)
 
 *[source](jupyter/minimal)*
 
@@ -49,9 +103,9 @@ Images derive from the Base image, with different flavors:
 
 JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](jupyter/datascience/README.md) file in the corresponding [folder](jupyter/datascience/).
 
-- [Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi9-py39_2023a_latest)
-- [Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-c9s-py39_2023a_latest)
-- [Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi8-py38_2023a_latest)
+- [Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi9-py39_2023b_latest)
+- [Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-c9s-py39_2023b_latest)
+- [Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-ubi8-py38_2023b_latest)
 
 *[source](jupyter/datascience)*
 
@@ -59,7 +113,7 @@ JupyterLab Notebook images with standard datascience packages, in different flav
 
 Notebook based on the UBI9 Data Science notebook, adding VSCode ([Code-Server](https://github.com/coder/code-server)).
 
-- [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-code-server-ubi9-py39_2023a_latest)
+- [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-code-server-ubi9-py39_2023b_latest)
 
 *[source](jupyter/datascience-code-server)*
 
@@ -67,7 +121,7 @@ Notebook based on the UBI9 Data Science notebook, adding VSCode ([Code-Server](h
 
 Notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel for Jupyter and RStudio.
 
-- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023a_latest)
+- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-datascience-rstudio-c9s-py39_2023b_latest)
 
 *[source](jupyter/datascience-rstudio)*
 
@@ -75,7 +129,7 @@ Notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel f
 
 Notebook based on the UBI9 Data Science notebook, adding Spark/PySpark capabilities.
 
-- [Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023a_latest)
+- [Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest)
 
 *[source](jupyter/spark)*
 
@@ -83,7 +137,7 @@ Notebook based on the UBI9 Data Science notebook, adding Spark/PySpark capabilit
 
 Notebook based on the UBI9 Data Science notebook, adding [OptaPy](https://www.optapy.org/optapy/latest/optapy-introduction/optapy-introduction.html) 8.31.1b0, the Python version of OptaPlanner.
 
-- [OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023a_latest)
+- [OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest)
 
 *[source](jupyter/optapy)*
 
@@ -95,9 +149,9 @@ CUDA-enabled Minimal JupyterLab Notebook image with additional basic packages. T
 
 Images derive from the Base image, with different flavors:
 
-- [CUDA Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi9-py39_2023a_latest)
-- [CUDA Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-c9s-py39_2023a_latest)
-- [CUDA Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi8-py38_2023a_latest)
+- [CUDA Minimal JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi9-py39_2023b_latest)
+- [CUDA Minimal JupyterLab Notebook image on CentOS Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-c9s-py39_2023b_latest)
+- [CUDA Minimal JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-minimal-ubi8-py38_2023b_latest)
 
 *[source](jupyter/minimal)*
 
@@ -105,9 +159,9 @@ Images derive from the Base image, with different flavors:
 
 CUDA-enabled JupyterLab Notebook images with standard datascience packages, in different flavors (see above). The list and version of included packages is available in the [README](jupyter/datascience/README.md) file in the corresponding [folder](jupyter/datascience/).
 
-- [CUDA Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi9-py39_2023a_latest)
-- [CUDA Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-c9s-py39_2023a_latest)
-- [CUDA Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi8-py38_2023a_latest)
+- [CUDA Datascience JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi9-py39_2023b_latest)
+- [CUDA Datascience JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-c9s-py39_2023b_latest)
+- [CUDA Datascience JupyterLab Notebook image on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-ubi8-py38_2023b_latest)
 
 *[source](jupyter/datascience)*
 
@@ -115,7 +169,7 @@ CUDA-enabled JupyterLab Notebook images with standard datascience packages, in d
 
 CUDA-enabled notebook based on the UBI9 Data Science notebook, adding VSCode ([Code-Server](https://github.com/coder/code-server)).
 
-- [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-code-server-ubi9-py39_2023a_latest)
+- [Datascience + VSCode JupyterLab Notebook image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-code-server-ubi9-py39_2023b_latest)
 
 *[source](jupyter/datascience-code-server)*
 
@@ -123,7 +177,7 @@ CUDA-enabled notebook based on the UBI9 Data Science notebook, adding VSCode ([C
 
 CUDA-enabled notebook based on the Centos Stream9 Data Science notebook, adding an R Kernel for Jupyter and RStudio.
 
-- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_2023a_latest)
+- [Datascience + RStudio JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_2023b_latest)
 
 *[source](jupyter/datascience-rstudio)*
 
@@ -131,25 +185,25 @@ CUDA-enabled notebook based on the Centos Stream9 Data Science notebook, adding 
 
 CUDA-enabled JupyterLab DataScience Notebook image with the addition of [Monai](https://monai.io/) 1.1.0 and [OpenCV](https://opencv.org/).
 
-- [Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023a_latest)
+- [Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest)
 
 *[source](jupyter/monai)*
 
 ## VSCode (Code-Server)
 
-NOTE: The following images are Standalone VSCode (Code-Server) images. **The ODH or RHODS dashboards are not compatible** with these images yet. However, a standalone deployment file using the Kubeflow Notebook Controller is available: `code-server-example.yaml`
+NOTE: The following images are Standalone VSCode (Code-Server) images, without the Jupyter environment. They are fully compatible with ODH and RHODS.
 
-- [VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:code-server-ubi9-py39_2023a_latest)
-- [CUDA VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-code-server-ubi9-py39_2023a_latest)
+- [VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:code-server-ubi9-py39_2023b_latest)
+- [CUDA VSCode image on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-code-server-ubi9-py39_2023b_latest)
 
 *[source](code-server)*
 
 ## RStudio
 
-NOTE: The following images are Standalone RStudio images. **The ODH or RHODS dashboards are not compatible** with these images yet. However, a standalone deployment file using the Kubeflow Notebook Controller is available: `rstudio-example.yaml`
+NOTE: The following images are Standalone RStudio images, without the Jupyter environment. They are fully compatible with ODH and RHODS.
 
-- [RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:rstudio-c9s-py39_2023a_latest)
-- [CUDA RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-rstudio-c9s-py39_2023a_latest)
+- [RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:rstudio-c9s-py39_2023b_latest)
+- [CUDA RStudio image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:cuda-rstudio-c9s-py39_2023b_latest)
 
 *[source](rstudio)*
 
@@ -166,7 +220,7 @@ The Makefile contains targets to build and to validate the image(s). The validat
 Images have all the same name to fit in a single repo: `workbench-images`. The TAG is used to differentiate them with this scheme: `{flavor}_{release}_{date}`:
 
 - `flavor` is the type of the image, including its main purpose (e.g. "jupyterlab-datascience"), the base container image (e.g. "ubi9") and the Python version (e.g. "py39" for Python 3.9).
-- `release` is the release number, which follows a YearIndex pattern, e.g. 2023a for the first release of 2023, then 2023b,...
+- `release` is the release number, which follows a YearIndex pattern, e.g. 2023b for the first release of 2023, then 2023b,...
 - `date` is the date of the build of a given release. Images are **built and updated on a weekly basis** to apply patches and bug fixes, following semantic versioning. This means that for a given release number, major and minor versions of packages won't change (only z in version x.y.z).
 
 ### Repository organization

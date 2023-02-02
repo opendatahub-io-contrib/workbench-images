@@ -2,12 +2,12 @@
 # api calls from probes get to VSCode /healthz endpoint
 ###############
 location = /api {
-  return 301 $scheme://$http_host/vscode/healthz/;
+  return 301 /vscode/healthz/;
   access_log  off;
 }
 
 location /api/ {
-  return 301 $scheme://$http_host/vscode/healthz/;
+  return 301 /vscode/healthz/;
   access_log  off;
 }
 ###############

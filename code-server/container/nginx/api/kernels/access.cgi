@@ -2,14 +2,13 @@
 echo "Status: 200"
 echo "Content-type: application/json"
 echo
-LOG_TAIL=$(tail -n 1 /var/log/nginx/vscode.access.log)
-LAST_ACTIVITY=$(echo $LOG_TAIL | grep -Po 'last_activity":"\K.*?(?=")')
-if [[ $(date -d $LAST_ACTIVITY"+10 minutes" +%s) -lt $(date +%s) ]]; then
-    # No activity for the past 10mn, we consider VSCode idle
-    # and echo an idle answer with this last_activity time + 10mn.
-    # So in practice culling will happen 10mn after culling setting.
-    # If you have a better solution you're welcome!
-    echo '[{"id":"code-server","name":"code-server","last_activity":"'$(date -d $LAST_ACTIVITY"+10 minutes" -Iseconds)'","execution_state":"idle","connections":1}]'
-else
-    echo $LOG_TAIL
-fi
+# Query the heartbeat endpoint
+HEALTHZ=$(curl -s http://127.0.0.1:8888/vscode/healthz)
+# Extract last_activity | remove milliseconds
+LAST_ACTIVITY_EPOCH=$(echo $HEALTHZ | grep -Po 'lastHeartbeat":\K.*?(?=})' | awk '{ print substr( $0, 1, length($0)-3 ) }')
+# Convert to ISO8601 date format
+LAST_ACTIVITY=$(date -d @$LAST_ACTIVITY_EPOCH -Iseconds)
+# Extract status and replace with terms expected by culler
+STATUS=$(sed 's/alive/busy/;s/expired/idle/' <<< $(echo $HEALTHZ | grep -Po 'status":"\K.*?(?=")'))
+# Export in format expected by the culling engine
+echo '[{"id":"code-server","name":"code-server","last_activity":"'$LAST_ACTIVITY'","execution_state":"'$STATUS'","connections":1}]'

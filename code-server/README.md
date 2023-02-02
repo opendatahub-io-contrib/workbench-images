@@ -1,6 +1,6 @@
 # Code-Server (VSCode) image
 
-Standalone Code-Server (VSCode) image. **The ODH or RHODS dashboards are not compatible** with this image yet. However, a standalone deployment file using the Kubeflow Notebook Controller is available: `code-server-example.yaml`
+Standalone Code-Server (VSCode) image.
 
 Images are available at [quay.io/opendatahub-io-contrib/workbench-images](https://quay.io/opendatahub-io-contrib/workbench-images)
 
