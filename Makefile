@@ -65,6 +65,7 @@ c9s-py39:
 	cd jupyter/datascience-rstudio && make c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-datascience-rstudio-c9s-py39_${RELEASE}_${DATE}
 	cd jupyter/datascience-rstudio && make cuda-c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:cuda-jupyter-datascience-rstudio-c9s-py39_${RELEASE}_${DATE}
 	cd jupyter/monai && make c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-monai-c9s-py39_${RELEASE}_${DATE}
+	cd jupyter/trustyai && make c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-trustyai-c9s-py39_${RELEASE}_${DATE}
 	cd rstudio && make c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:rstudio-c9s-py39_${RELEASE}_${DATE}
 	cd rstudio && make cuda-c9s-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:cuda-rstudio-c9s-py39_${RELEASE}_${DATE}
 
