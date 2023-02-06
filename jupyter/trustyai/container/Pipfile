@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-Jpype1==1.4.1
-pyarrow==7.0.0
-matplotlib==3.5.1
-pandas==1.2.5
+Jpype1 = 1.4.1
+pyarrow = 7.0.0
+matplotlib = 3.5.1
+pandas = 1.2.5
 numpy
-bokeh==2.4.3
+bokeh = 2.4.3
 
 [packages]
 # TrustyAI-linked packages

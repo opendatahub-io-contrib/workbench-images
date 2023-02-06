@@ -25,6 +25,10 @@ RUN yum install -y yum-utils && \
     yum install -y https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
     yum -y clean all --enablerepo='*'
 
+RUN INSTALL_PKGS="java-11-openjdk java-11-openjdk-devel" && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    yum -y clean all --enablerepo='*'
+
 USER 1001
 
 ####################
