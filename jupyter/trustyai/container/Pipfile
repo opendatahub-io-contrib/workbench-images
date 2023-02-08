@@ -3,20 +3,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[dev-packages]
-Jpype1 = 1.4.1
-pyarrow = 7.0.0
-matplotlib = 3.5.1
-pandas = 1.2.5
-numpy
-bokeh = 2.4.3
-
 [packages]
 # TrustyAI-linked packages
-trustyai = 0.2.8
-
+trustyai = "==0.2.8"
 #  Parent image requirements to maintain cohesion
 # Datascience and useful extensions
+Jpype1 = "1.4.1"
+pyarrow = "7.0.0"
 "elyra[kfp-tekton]" = "~=3.14.1"
 black = "~=22.12.0"
 boto3 = "~=1.26.41"
@@ -26,9 +19,7 @@ jupyterlab-lsp = "~=3.10.2"
 jupyterlab-tabnine = "~=0.0.24"
 jupyterlab-widgets = "~=3.0.5"
 kafka-python = "~=2.0.2"
-matplotlib = "~=3.6.3"
 numpy = "~=1.24.1"
-pandas = "~=1.5.3"
 plotly = "~=5.13.0"
 scikit-learn = "~=1.2.1"
 scipy = "~=1.10.0"
@@ -45,6 +36,7 @@ nbgitpuller = "~=1.1.1"
 # ---
 thamos = "~=1.29.1"
 wheel = "~=0.38.4"
+requests = "*"
 
 [requires]
 python_version = "3.9"

@@ -20,11 +20,6 @@ LABEL name="workbench-images:${CUDA}jupyter-trustyai-${UBI_VERSION}-${PYTHON_VER
 
 USER 0
 
-RUN yum install -y yum-utils && \
-    yum-config-manager --enable crb && \
-    yum install -y https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
-    yum -y clean all --enablerepo='*'
-
 RUN INSTALL_PKGS="java-11-openjdk java-11-openjdk-devel" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
