@@ -1,4 +1,4 @@
-.PHONY: default c9s-py39 validate-py39
+.PHONY: default ubi9-py39 validate-py39
 
 RELEASE ?= $(shell git describe --tags --always --dirty || echo 'dev')
 DATE ?= $(shell date +'%Y%m%d')
@@ -6,20 +6,20 @@ REQUIRED_RUNTIME_IMAGE_COMMANDS ?= "curl python oc java"
 
 default:
 	@echo "Options are:"
-	@echo "c9s-py39 : builds an image based on CentOS Stream 9 with Python 3.9"
+	@echo "ubi9-py39 : builds an image based on UBI9 with Python 3.9"
 	@echo "---"
 	@echo "Please specify the base image with BASE_IMAGE=..."
 	@echo "Please specify the image tag with TAG=..."
 
-c9s-py39:
+ubi9-py39:
 	cd container && podman build --build-arg=RELEASE=${RELEASE} \
 								--build-arg=DATE=${DATE} \
 								--build-arg=CUDA="" \
-								--build-arg=BASE_IMAGE=workbench-images:jupyter-datascience-c9s-py39_${RELEASE}_${DATE} \
-								--build-arg=UBI_VERSION=c9s \
+								--build-arg=BASE_IMAGE=workbench-images:jupyter-datascience-ubi9-py39_${RELEASE}_${DATE} \
+								--build-arg=UBI_VERSION=ubi9 \
 								--build-arg=PYTHON_VERSION=py39 \
 								--build-arg=PYTHON_VERSION_LONG="Python 3.9" \
-								-t workbench-images:jupyter-trustyai-c9s-py39_${RELEASE}_${DATE} .
+								-t workbench-images:jupyter-trustyai-ubi9-py39_${RELEASE}_${DATE} .
 
 validate-py39:
 	@required_commands=$(REQUIRED_RUNTIME_IMAGE_COMMANDS) ; \
@@ -44,6 +44,14 @@ validate-py39:
 			echo "ERROR: Container image $$IMAGE does not meet criteria for command: $$cmd" ; \
 			fail=1; \
 			continue; \
+		fi; \
+		if [ $$cmd == "java" ]; then \
+			echo "=> Checking Java..." ; \
+			podman run --rm  --entrypoint /bin/bash $$IMAGE -c "java --version  > /dev/null 2>&1 " ; \
+			if [ $$? -ne 0 ]; then \
+				echo "ERROR: Container image $$IMAGE does not meet criteria for command: $$cmd" ; \
+				fail=1; \
+			fi; \
 		fi; \
 		if [ $$cmd == "python" ]; then \
 			echo "=> Checking Python version..." ; \
