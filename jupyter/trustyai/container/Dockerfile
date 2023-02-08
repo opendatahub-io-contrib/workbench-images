@@ -20,7 +20,7 @@ LABEL name="workbench-images:${CUDA}jupyter-trustyai-${UBI_VERSION}-${PYTHON_VER
 
 USER 0
 
-RUN INSTALL_PKGS="java-11-openjdk java-11-openjdk-devel" && \
+RUN INSTALL_PKGS="java-11-openjdk" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
 
