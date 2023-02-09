@@ -52,6 +52,7 @@ ubi9-py39:
 	cd jupyter/spark && make ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-spark-ubi9-py39_${RELEASE}_${DATE}
 	cd jupyter/spark && make cuda-ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:cuda-jupyter-spark-ubi9-py39_${RELEASE}_${DATE}
 	cd jupyter/optapy && make ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-optapy-ubi9-py39_${RELEASE}_${DATE}
+	cd jupyter/trustyai && make ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:jupyter-trustyai-ubi9-py39_${RELEASE}_${DATE}
 	cd code-server && make ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:code-server-ubi9-py39_${RELEASE}_${DATE}
 	cd code-server && make cuda-ubi9-py39 RELEASE=${RELEASE} DATE=${DATE} && make validate-py39 IMAGE=workbench-images:cuda-code-server-ubi9-py39_${RELEASE}_${DATE}
 	
