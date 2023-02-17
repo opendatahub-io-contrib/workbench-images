@@ -1,0 +1,9 @@
+{
+    "display_name": "R 4.2.2 with Python 3.9 (UBI9)",
+    "metadata": {
+        "tags": [],
+        "display_name": "R 4.2.2 with Python 3.9 (UBI9)",
+        "image_name": "quay.io/opendatahub-contrib/runtime-images:r-c9s-py39_RELEASE_latest"
+    },
+    "schema_name": "runtime-image"
+}

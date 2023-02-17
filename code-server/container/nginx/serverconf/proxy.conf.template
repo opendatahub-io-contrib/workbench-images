@@ -2,12 +2,12 @@
 # api calls from probes get to VSCode /healthz endpoint
 ###############
 location = /api {
-  return 301 /vscode/healthz/;
+  return 302 /vscode/healthz/;
   access_log  off;
 }
 
 location /api/ {
-  return 301 /vscode/healthz/;
+  return 302 /vscode/healthz/;
   access_log  off;
 }
 ###############
@@ -16,7 +16,7 @@ location /api/ {
 # api calls from culler get to CGI processing
 ###############
 location = /api/kernels {
-    return 301 $scheme://$http_host/api/kernels/;
+    return 302 $scheme://$http_host/api/kernels/;
     access_log  off;
 }
 
@@ -36,11 +36,11 @@ location /api/kernels/ {
 # root and prefix get to VSCode endpoint
 ###############
 location = / {
-    return 301 $scheme://$http_host/vscode/;
+    return 302 $scheme://$http_host/vscode/;
 }
 
 location = /vscode {
-    return 301 $scheme://$http_host/vscode/;
+    return 302 $scheme://$http_host/vscode/;
 }
 
 location /vscode/ {

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Fixes on VSCode and RStudio images for bad redirects, integrated in 2023b
+- Addition of TrustyAI workbench image, integrated in 2023b
+- Addition of runtime images, integrated in 2023b
+
 ## [2023b] - 2023-02-01
 
 - Update to the CUDA RStudio and Jupyter + RStudio images to include the CUDA toolkit. This is necessary to install certain packages that are compiled in-place.

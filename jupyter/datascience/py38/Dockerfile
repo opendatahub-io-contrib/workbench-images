@@ -22,13 +22,13 @@ LABEL name="workbench-images:${CUDA}jupyter-datascience-${UBI_VERSION}-${PYTHON_
 # Datascience notebook #
 ########################
 
-WORKDIR /tmp
+WORKDIR /opt/app-root/bin
 
 # Copying custom packages
-COPY Pipfile.lock /.
+COPY Pipfile.lock ./
 
 # Streamlit extension installation
-COPY streamlit-launcher.sh /opt/app-root/bin/
+COPY streamlit-launcher.sh ./
 COPY streamlit-menu/dist/jupyterlab_streamlit_menu-0.1.0-py3-none-any.whl ./
 
 # Copy Elyra setup to utils so that it's sourced at startup
@@ -40,13 +40,19 @@ RUN echo "Installing softwares and packages" && \
     # Install Python packages \
     micropipenv install && \
     rm -f ./Pipfile.lock && \
-    pip install --no-cache-dir /tmp/jupyterlab_streamlit_menu-0.1.0-py3-none-any.whl && \
-    rm -f jupyterlab_streamlit_menu-0.1.0-py3-none-any.whl && \
+    pip install --no-cache-dir ./jupyterlab_streamlit_menu-0.1.0-py3-none-any.whl && \
+    rm -f ./jupyterlab_streamlit_menu-0.1.0-py3-none-any.whl && \
     # Remove Elyra logo from JupyterLab because this is not a pure Elyra image \
-    sed -i 's/widget\.id === \x27jp-MainLogo\x27/widget\.id === \x27jp-MainLogo\x27 \&\& false/' /opt/app-root/share/jupyter/labextensions/@elyra/theme-extension/static/lib_index_js.*.js && \
+    sed -i "s/widget\.id === \x27jp-MainLogo\x27/widget\.id === \x27jp-MainLogo\x27 \&\& false/" /opt/app-root/share/jupyter/labextensions/@elyra/theme-extension/static/lib_index_js.*.js && \
+    # Remove default Elyra runtime-images \
+    rm /opt/app-root/share/jupyter/metadata/runtime-images/*.json && \
     # Fix permissions to support pip in Openshift environments \
     chmod -R g+w /opt/app-root/lib/python3.8/site-packages && \
     fix-permissions /opt/app-root -P
+
+# Copy Elyra runtime-images definitions and set the version
+COPY runtime-images/ /opt/app-root/share/jupyter/metadata/runtime-images/
+RUN sed -i "s/RELEASE/${RELEASE}/" /opt/app-root/share/jupyter/metadata/runtime-images/*.json 
 
 WORKDIR /opt/app-root/src
 
