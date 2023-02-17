@@ -1,0 +1,9 @@
+{
+    "display_name": "Spark/PySpark 3.3.1 with Hadoop 3.3.4 + Datascience with Python 3.9 (UBI9)",
+    "metadata": {
+        "tags": [],
+        "display_name": "Spark/PySpark 3.3.1 with Hadoop 3.3.4 + Datascience with Python 3.9 (UBI9)",
+        "image_name": "quay.io/opendatahub-contrib/runtime-images:spark-ubi9-py39_RELEASE_latest"
+    },
+    "schema_name": "runtime-image"
+}
