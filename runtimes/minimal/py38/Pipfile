@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+
+# Parent image requirements to maintain cohesion
+thamos = "~=1.29.1"
+wheel = "~=0.38.4"
+
+[requires]
+python_version = "3.8"

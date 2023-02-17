@@ -2,9 +2,13 @@
 
 *[See changelog](CHANGELOG.md)*
 
-Various images (Jupyter, RStudio, VSCode,...) to use with [Open Data Hub](http://opendatahub.io/) (ODH) or [Red Hat OpenShift Data Science](https://www.redhat.com/fr/technologies/cloud-computing/openshift/openshift-data-science) (RHODS).
+Various workbench images (Jupyter, RStudio, VSCode,...) and runtimes to use with [Open Data Hub](http://opendatahub.io/) (ODH) or [Red Hat OpenShift Data Science](https://www.redhat.com/fr/technologies/cloud-computing/openshift/openshift-data-science) (RHODS).
 
-## TL;DR
+The runtimes images are fully in sync with their respective workbench images. So the code developed in a specific notebook image can be directly run in a pipeline using its corresponding runtime.
+
+Runtimes can also be used as base images for packaging your code or application in a container image.
+
+## TL;DR, full list of images
 
 NOTE: base and CUDA buildchain images are not listed here, see below for details.
 
@@ -56,7 +60,34 @@ CUDA 11.8 + CuDNN 8.6.0 versions:
 |-------------------|--------------|
 |[Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest|
 |[OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest|
+|[TrustyAI based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-trustyai-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest|
 |[Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest|
+
+### Runtimes
+
+| Image description | Pull address |
+|-------------------|--------------|
+UBI9 based runtimes:
+|[Minimal runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:minimal-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal-ubi9-py39_2023b_latest|
+|[CUDA Minimal runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:minimal-cuda-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal-cuda-ubi9-py39_2023b_latest|
+|[Datascience runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:datascience-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience-ubi9-py39_2023b_latest|
+|[CUDA Datascience runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:datascience-cuda-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience-cuda-ubi9-py39_2023b_latest|
+|[Spark runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:spark-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:spark-ubi9-py39_2023b_latest|
+|[CUDA Spark runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:spark-cuda-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:spark-cuda-ubi9-py39_2023b_latest|
+|[Optapy runtime on UBI9 with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:optapy-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:optapy-ubi9-py39_2023b_latest|
+Centos Stream 9 based runtimes:
+|[Minimal runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:minimal-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal-c9s-py39_2023b_latest|
+|[CUDA Minimal runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:minimal-cuda-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal-cuda-c9s-py39_2023b_latest|
+|[Datascience runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:datascience-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience-c9s-py39_2023b_latest|
+|[CUDA Datascience runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:datascience-cuda-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience-cuda-c9s-py39_2023b_latest|
+|[Monai runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:monai-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:monai-c9s-py39_2023b_latest|
+|[R runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:r-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:r-c9s-py39_2023b_latest|
+|[CUDA + R runtime on C9S with Python 3.9](https://quay.io/opendatahub-contrib/runtime-images:r-cuda-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:r-cuda-c9s-py39_2023b_latest|
+UBI8 based runtimes:
+|[Minimal runtime on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/runtime-images:minimal/py38-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal/py38-ubi8-py38_2023b_latest|
+|[CUDA Minimal runtime on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/runtime-images:minimal/py38-cuda-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:minimal/py38-cuda-ubi8-py38_2023b_latest|
+|[Datascience runtime on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/runtime-images:datascience/py38-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience/py38-ubi8-py38_2023b_latest|
+|[CUDA Datascience runtime on UBI8 with Python 3.8](https://quay.io/opendatahub-contrib/runtime-images:datascience/py38-cuda-ubi8-py38_2023b_latest)|quay.io/opendatahub-contrib/runtime-images:datascience/py38-cuda-ubi8-py38_2023b_latest|
 
 ## Base images
 

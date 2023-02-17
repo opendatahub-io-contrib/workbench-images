@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+# Optapy-linked packages
+optapy = "==8.31.1b0"
+
+#  Parent image requirements to maintain cohesion
+# Datascience and useful extensions
+boto3 = "~=1.26.41"
+kafka-python = "~=2.0.2"
+matplotlib = "~=3.6.3"
+numpy = "~=1.23.5" # 1.24 totally removed np.bool, which breaks papermill/elyra
+pandas = "~=1.5.3"
+plotly = "~=5.13.0"
+scikit-learn = "~=1.2.1"
+scipy = "~=1.10.0"
+# ---
+thamos = "~=1.29.1"
+wheel = "~=0.38.4"
+
+[requires]
+python_version = "3.9"
