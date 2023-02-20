@@ -101,6 +101,7 @@ push-ubi9-py39:
 	podman push localhost/workbench-images:jupyter-datascience-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-datascience-ubi9-py39_${RELEASE}_${DATE}
 	podman push localhost/workbench-images:jupyter-minimal-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-minimal-ubi9-py39_${RELEASE}_${DATE}
 	podman push localhost/workbench-images:jupyter-optapy-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-optapy-ubi9-py39_${RELEASE}_${DATE}
+	podman push localhost/workbench-images:jupyter-trustyai-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-trustyai-ubi9-py39_${RELEASE}_${DATE}
 	podman push localhost/workbench-images:jupyter-spark-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-spark-ubi9-py39_${RELEASE}_${DATE}
 # Push latest tag to all new images	
 	podman push localhost/workbench-images:base-ubi9-py39_${RELEASE}_${DATE} ${REPO}:base-ubi9-py39_${RELEASE}_latest
@@ -120,6 +121,7 @@ push-ubi9-py39:
 	podman push localhost/workbench-images:jupyter-datascience-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-datascience-ubi9-py39_${RELEASE}_latest
 	podman push localhost/workbench-images:jupyter-minimal-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-minimal-ubi9-py39_${RELEASE}_latest
 	podman push localhost/workbench-images:jupyter-optapy-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-optapy-ubi9-py39_${RELEASE}_latest
+	podman push localhost/workbench-images:jupyter-trustyai-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-trustyai-ubi9-py39_${RELEASE}_latest
 	podman push localhost/workbench-images:jupyter-spark-ubi9-py39_${RELEASE}_${DATE} ${REPO}:jupyter-spark-ubi9-py39_${RELEASE}_latest
 
 
