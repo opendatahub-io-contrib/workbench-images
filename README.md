@@ -56,12 +56,12 @@ CUDA 11.8 + CuDNN 8.6.0 versions:
 
 ### Specialty images
 
-| Image description | Pull address |
-|-------------------|--------------|
-|[Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest|
-|[OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest|
-|[TrustyAI based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-trustyai-ubi9-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest|
-|[Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest)|quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest|
+| Image description | Pull address                                                                         |
+|-------------------|--------------------------------------------------------------------------------------|
+|[Spark/PySpark 3.3.1 with Hadoop 3.3.4 based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest)| quay.io/opendatahub-contrib/workbench-images:jupyter-spark-ubi9-py39_2023b_latest    |
+|[OptaPy based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest)| quay.io/opendatahub-contrib/workbench-images:jupyter-optapy-ubi9-py39_2023b_latest   |
+|[TrustyAI based on jupyter-datascience-ubi9-py39](https://quay.io/opendatahub-contrib/workbench-images:jupyter-trustyai-ubi9-py39_2023b_latest)| quay.io/opendatahub-contrib/workbench-images:jupyter-trustyai-ubi9-py39_2023b_latest |
+|[Monai JupyterLab Notebook image on Centos Stream 9 with Python 3.9](https://quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest)| quay.io/opendatahub-contrib/workbench-images:jupyter-monai-c9s-py39_2023b_latest     |
 
 ### Runtimes
 
