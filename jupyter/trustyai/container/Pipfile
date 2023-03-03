@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 # TrustyAI-linked packages
 trustyai = "==0.2.9"
-
+#  Parent image requirements to maintain cohesion
 # Datascience and useful extensions
 "elyra[kfp-tekton]" = "~=3.14.1"
 black = "~=22.12.0"
@@ -24,8 +24,7 @@ plotly = "~=5.13.0"
 scikit-learn = "~=1.2.1"
 scipy = "~=1.10.0"
 streamlit = "~=1.17.0"
-
-#  Parent image requirements to maintain cohesion
+# ---
 jupyterlab = "~=3.5.3"
 jupyter-resource-usage = "~=0.7.0"
 jupyter-server = "~=2.1.0"
