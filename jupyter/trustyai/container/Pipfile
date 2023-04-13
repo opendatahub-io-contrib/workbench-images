@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 # TrustyAI-linked packages
-trustyai = "==0.2.9"
+trustyai = "==0.2.10"
 #  Parent image requirements to maintain cohesion
 # Datascience and useful extensions
 "elyra[kfp-tekton]" = "~=3.14.1"
