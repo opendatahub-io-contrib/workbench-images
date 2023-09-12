@@ -1,0 +1,16 @@
+diffutils
+git-lfs
+hdf5
+jq
+lame
+lcms2
+libsndfile
+llvm
+llvm-devel
+lz4
+mysql
+nano
+postgresql
+tk
+unixODBC
+zstd

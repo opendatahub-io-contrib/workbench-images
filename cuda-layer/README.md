@@ -1,21 +1,21 @@
 # CUDA base images
 
-Base images from UBI or CentOS Stream with Python and CUDA
+Base images from CentOS Stream 9 with Python 9 or Python 3.11 and CUDA 11.8
 
-Build example - UBI9 with Python 3.9:
+- Building and verifying all the images:
 
 ```bash
-make ubi9-py39 RELEASE=dev DATE=20230101
+make all RELEASE=dev DATE=20230910
 ```
 
-Build example - CentOS Stream 9 with Python 3.9:
+- Building the images:
 
 ```bash
-make c9s-py39 RELEASE=dev DATE=20230101
+make c9s-py39 RELEASE=dev DATE=20230910
 ```
 
-Build example - UBI8 with Python 3.8:
+- Verifying the images:
 
 ```bash
-make ubi8-py38 RELEASE=dev DATE=20230101
+make validate-py39 RELEASE=dev DATE=20230910
 ```

@@ -1,21 +1,27 @@
-# Python base images
+# Python base image
 
-Base images from UBI or CentOS Stream with Python
+Base image from CentOS Stream 9 with Python 3.9 or Python 3.11.
 
-Build example - UBI9 with Python 3.9:
+It comes with a set of base OS packages and libraries, and a properly configured environment for child images.
+
+As many updates and installations are made, this is a flattened image using multistage to minimize its size.
+
+## Make
+
+- Building and verifying the images:
 
 ```bash
-make ubi9-py39 RELEASE=dev DATE=20230101
+make all RELEASE=dev DATE=20230910
 ```
 
-Build example - CentOS Stream 9 with Python 3.9:
+- Building an image:
 
 ```bash
-make c9s-py39 RELEASE=dev DATE=20230101
+make c9s-py39 RELEASE=dev DATE=20230910
 ```
 
-Build example - UBI8 with Python 3.8:
+- Verifying an image:
 
 ```bash
-make ubi8-py38 RELEASE=dev DATE=20230101
+make validate-py39 RELEASE=dev DATE=20230910
 ```

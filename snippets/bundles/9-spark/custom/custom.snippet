@@ -1,0 +1,42 @@
+##########################################
+# Custom Spark Installation from Builder #
+##########################################
+
+ARG JAVA_VERSION=11
+ARG PKG_ROOT=/opt/app-root
+ARG SPARK_VERSION=3.4.1
+ARG HADOOP_VERSION=3.3.6
+ARG JMX_PROMETHEUS_JAVAAGENT_VERSION=0.19.0
+
+USER 0
+
+WORKDIR ${PKG_ROOT}/${SPARK_VERSION}
+
+####################
+# Spark            #
+####################
+
+# Copy Spark from builder stage
+COPY --from=builder --chown=default:root /spark ${PKG_ROOT}/spark-${SPARK_VERSION}
+COPY --from=builder --chown=default:root /spark/kubernetes/dockerfiles/spark/entrypoint.sh /opt/app-root/bin
+
+# Copy Hadoop from builder stage
+COPY --from=builder --chown=default:root /hadoop ${PKG_ROOT}/hadoop-${HADOOP_VERSION}
+
+# Copy Prometheus jars from builder stage
+COPY --from=builder --chown=default:root /prometheus ${PKG_ROOT}/prometheus
+
+# Setup required env vars for spark and hadoop
+ENV JAVA_HOME=/usr/lib/jvm/jre
+ENV SPARK_HOME=${PKG_ROOT}/spark-${SPARK_VERSION}
+ENV HADOOP_HOME ${PKG_ROOT}/hadoop-${HADOOP_VERSION}
+
+ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:/contrib/capacity-scheduler/*.jar:$HADOOP_HOME/share/hadoop/tools/lib/*"
+
+ENV SPARK_EXTRA_CLASSPATH="$SPARK_DIST_CLASSPATH"
+
+ENV LD_LIBRARY_PATH /lib64
+
+ENV PATH="${PATH}:${PKG_ROOT}/spark-${SPARK_VERSION}/bin"
+
+WORKDIR /opt/app-root/src

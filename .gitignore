@@ -1,5 +1,7 @@
 .DS_Store
 *.bundle.*
+*.helper
+custom-recipes
 lib/
 node_modules/
 *.egg-info/

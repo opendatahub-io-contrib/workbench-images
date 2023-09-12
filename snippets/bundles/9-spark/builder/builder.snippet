@@ -1,0 +1,54 @@
+################# 
+# Spark builder #
+#################
+
+FROM ${BASE_IMAGE} as builder
+
+# Build options
+ARG SPARK_VERSION=3.4.1
+ARG HADOOP_VERSION=3.3.6
+ARG JMX_PROMETHEUS_JAVAAGENT_VERSION=0.19.0
+# Spark's Guava version to match with Hadoop's
+ARG GUAVA_VERSION=32.1.1-jre
+
+USER 0
+
+WORKDIR /
+
+# Install gzip to extract archives
+RUN dnf install -y gzip && \
+    dnf clean all
+
+# Download Spark
+ADD https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz .
+# Unzip Spark
+RUN tar -xvzf spark-${SPARK_VERSION}-bin-without-hadoop.tgz --no-same-owner
+RUN mv spark-${SPARK_VERSION}-bin-without-hadoop spark
+
+# Download Hadoop
+ADD https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz .
+# Unzip Hadoop
+RUN tar -xvzf hadoop-${HADOOP_VERSION}.tar.gz --no-same-owner
+RUN mv hadoop-${HADOOP_VERSION} hadoop
+# Delete unnecessary hadoop documentation
+RUN rm -rf hadoop/share/doc
+
+# Download JMX Prometheus javaagent jar
+ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/${JMX_PROMETHEUS_JAVAAGENT_VERSION}/jmx_prometheus_javaagent-${JMX_PROMETHEUS_JAVAAGENT_VERSION}.jar /prometheus/
+RUN chmod 0644 prometheus/jmx_prometheus_javaagent*.jar
+
+# Add updated Guava
+WORKDIR /spark/jars
+RUN rm -f guava-*.jar
+ADD https://repo1.maven.org/maven2/com/google/guava/guava/${GUAVA_VERSION}/guava-${GUAVA_VERSION}.jar .
+
+# Add Spark Hadoop Cloud to interact with cloud infrastructures
+ADD https://repo1.maven.org/maven2/org/apache/spark/spark-hadoop-cloud_2.12/${SPARK_VERSION}/spark-hadoop-cloud_2.12-${SPARK_VERSION}.jar .
+
+# Build options
+ARG SPARK_VERSION=3.4.1
+ARG HADOOP_VERSION=3.3.6
+ARG JMX_PROMETHEUS_JAVAAGENT_VERSION=0.19.0
+# Spark's Guava version to match with Hadoop's
+ARG GUAVA_VERSION=32.1.1-jre
+

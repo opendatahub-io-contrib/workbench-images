@@ -1,0 +1,11 @@
+--- activate	2023-07-21 11:04:42.471168439 -0400
++++ activate.new	2023-07-21 11:04:48.565126009 -0400
+@@ -54,7 +54,7 @@
+ 
+ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
+     _OLD_VIRTUAL_PS1="${PS1:-}"
+-    PS1="(app-root) ${PS1:-}"
++    PS1="\[\033[34;1m\][\$(pwd)]\[\033[0m\]\n\[\033[1;0m\]$ \[\033[0m\]"    
+     export PS1
+ fi
+ 

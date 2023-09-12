@@ -1,0 +1,158 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE} as builder
+
+ARG RELEASE
+ARG DATE
+ARG PYTHON_VERSION_NUMBER
+
+# This will avoid people forgetting to set no-cache-dir when building images
+ENV PIP_NO_CACHE_DIR=1
+
+# All installs done from here
+WORKDIR /opt/app-root/bin
+
+# OS Packages needs to be installed as root
+USER 0
+
+##############################
+# Repos and OS Packages      #
+##############################
+
+# Cleanup for all following commands will happen at the end, we are only in a builder image
+
+# 1. Update base, enable repos, install standard packages
+# -------------------------------------------------------
+COPY --chown=1001:0 os-packages.txt ./
+
+RUN echo "tsflags=nodocs" | tee -a /etc/yum.conf && \
+    yum -y update && \
+    yum install -y yum-utils && \
+    yum-config-manager --enable crb && \
+    yum install -y https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+    yum install -y $(cat os-packages.txt) && \
+    rm -f ./os-packages.txt
+# ---
+
+# 2. ffmpeg, gstreamer,...
+# ------------------------
+# We need rpmfusion as those packages are not available in standard or epel repos
+RUN yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm && \
+    yum install -y https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm && \
+    yum -y install ffmpeg gstreamer1 gstreamer1-libav gstreamer1-plugins-base gstreamer1-plugins-base-tools
+# ---
+
+# 3. openh264
+# -----------
+# We need a special repo as Cisco/openh264 as they do their own distribution
+COPY el9-cisco-openh264.repo-x86_64 /etc/yum.repos.d/el9-cisco-openh264.repo
+
+RUN yum -y install openh264 gstreamer1-plugin-openh264
+# ---
+
+
+# 4. MongoDB Client 
+# -----------------
+# We need a special repo for MongoDB as they do their own distribution
+COPY mongodb-org-6.0.repo-x86_64 /etc/yum.repos.d/mongodb-org-6.0.repo
+
+RUN yum install -y mongocli
+# ---
+
+# 5. MSSQL Client
+# ---------------
+# We need a special repo for MSSQL as they do their own distribution
+COPY mssql-2022.repo-x86_64 /etc/yum.repos.d/mssql-2022.repo
+
+RUN ACCEPT_EULA=Y yum install -y mssql-tools18 unixODBC-devel
+
+ENV PATH="$PATH:/opt/mssql-tools18/bin"
+#---
+
+# Cleanup
+RUN yum -y clean all --enablerepo='*' && \
+    rm -rf /var/cache/dnf && \
+    find /var/log -type f -name "*.log" -exec rm -f {} \;
+
+# End of OS Packages
+####################
+
+# Other apps and tools installed as default user
+USER 1001
+
+#####################
+# Patch Bash Prompt #
+#####################
+
+# Patch and always enable terminal prompt
+COPY --chown=1001:0 patch.txt ./
+RUN patch -u /opt/app-root/bin/activate -i patch.txt && \
+    rm patch.txt
+
+######################
+# Base Python config #
+######################
+
+# Copy requirements file
+COPY --chown=1001:0 ${PYTHON_VERSION_NUMBER}/requirements.txt ./
+
+# Install packages and cleanup
+# (all commands are chained to minimize layer size)
+RUN echo "Installing softwares and packages" && \
+    # Install oc client \
+    curl -L https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz \
+        -o /tmp/openshift-client-linux.tar.gz && \
+    tar -xzvf /tmp/openshift-client-linux.tar.gz oc && \
+    rm -f /tmp/openshift-client-linux.tar.gz && \
+    # Install Python packages \
+    pip install --no-cache-dir -r requirements.txt && \
+    rm -f requirements.txt && \
+    # Fix permissions to support pip in Openshift environments \
+    chmod -R g+w /opt/app-root/lib/python${PYTHON_VERSION_NUMBER}/site-packages && \
+    fix-permissions /opt/app-root -P
+
+#####################
+
+################################
+### Create the flattened image #
+################################
+
+FROM scratch
+
+ARG RELEASE
+ARG DATE
+ARG PYTHON_VERSION_NUMBER
+
+# Copy the whole content from builder
+COPY --from=builder / /
+
+# Set all Environment variables (they did not make it through the copy)
+ENV APP_ROOT=/opt/app-root \
+    ARCH=x86_64 \
+    DESCRIPTION="Python ${PYTHON_VERSION_NUMBER} available as container is a base platform for building and running various Python ${PYTHON_VERSION_NUMBER} applications and frameworks. Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python's elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms." \
+    HOME=/opt/app-root/src \
+    LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    NAME=python3 \
+    NODEJS_VER=16 \
+    PATH=/opt/app-root/bin:/opt/app-root/src/.local/bin/:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mssql-tools18/bin \
+    PIP_NO_CACHE_DIR=1 \
+    PLATFORM=el9 \
+    PS1="\[\033[34;1m\][\$(pwd)]\[\033[0m\]\n\[\033[1;0m\]$ \[\033[0m\]" \
+    PWD=/opt/app-root/src \
+    PYTHON_VERSION=${PYTHON_VERSION_NUMBER} \
+    PYTHONIOENCODING=UTF-8 \
+    PYTHONUNBUFFERED=1 \
+    SHELL=/bin/bash \
+    STI_SCRIPTS_PATH=/usr/libexec/s2i \
+    STI_SCRIPTS_URL=image:///usr/libexec/s2i \
+    SUMMARY="Platform for building and running Python ${PYTHON_VERSION_NUMBER} applications" \
+    TERM=xterm \
+    VERSION=0 \
+    VIRTUAL_ENV=/opt/app-root
+
+# Let's get the right USER HOME
+USER 1001
+WORKDIR /opt/app-root/src
+
+# Default CMD from the initial image
+CMD $STI_SCRIPTS_PATH/usage

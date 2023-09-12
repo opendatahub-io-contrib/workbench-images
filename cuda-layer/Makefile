@@ -1,122 +1,118 @@
-.PHONY: default ubi9-py39 c9s-py39 ubi8-py38 validate-py39 validate-py38
+.PHONY: default c9s-py39 validate-py39
 
 RELEASE ?= $(shell git describe --tags --always --dirty || echo 'dev')
 DATE ?= $(shell date +'%Y%m%d')
+BASE_IMAGE_PY39 ?= workbench-images:base-c9s-py39_${RELEASE}_${DATE}
+IMAGE_PY39 := workbench-images:cuda-c9s-py39-runtime-cudnn_${RELEASE}_${DATE}
+BASE_IMAGE_PY311 ?= workbench-images:base-c9s-py311_${RELEASE}_${DATE}
+IMAGE_PY311 := workbench-images:cuda-c9s-py311-runtime-cudnn_${RELEASE}_${DATE}
+REQUIRED_RUNTIME_IMAGE_COMMANDS ?= "curl python oc"
 
 default:
 	@echo "Options are:"
-	@echo "ubi9-py39 : builds all CUDA images for the ubi9-py39 family"
-	@echo "c9s-py39 : builds all CUDA images for the c9s-py39 family"
-	@echo "ubi8-py38 : builds all CUDA images for the ubi8-py38 family"
+	@echo "all: builds and validates all CUDA images based on CentOS Stream 9 with Python 3.9 or 3.11"
+	@echo "c9s-py39 : builds the image"
+	@echo "validate-py39 : validates the image"
+	@echo "c9s-py311 : builds the image"
+	@echo "validate-py311 : validates the image"
 	@echo "Please specify:"
 	@echo " - the release number with RELEASE=... (defaults to 'dev')"
 	@echo " - the build date with DATE=... (defaults to current date)"
 
-ubi8-py38:
-	cd base && podman build --build-arg=BASE_IMAGE=workbench-images:base-ubi8-py38_${RELEASE}_${DATE} -t workbench-images:cuda-ubi8-py38_${RELEASE}_${DATE} .
-	cd runtime && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi8-py38_${RELEASE}_${DATE} -t workbench-images:cuda-ubi8-py38-runtime_${RELEASE}_${DATE} .
-	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi8-py38-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-ubi8-py38-runtime-cudnn_${RELEASE}_${DATE} .
-	cd devel && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi8-py38_${RELEASE}_${DATE} -t workbench-images:cuda-ubi8-py38-devel_${RELEASE}_${DATE} .
-	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi8-py38-devel_${RELEASE}_${DATE} -t workbench-images:cuda-ubi8-py38-devel-cudnn_${RELEASE}_${DATE} .
-# Add tag to simplify naming in the main tree, using runtime-cudnn for base cuda image
-	podman tag workbench-images:cuda-ubi8-py38-runtime-cudnn_${RELEASE}_${DATE} workbench-images:cuda-base-ubi8-py38_${RELEASE}_${DATE}
-
-ubi9-py39:
-	cd base && podman build --build-arg=BASE_IMAGE=workbench-images:base-ubi9-py39_${RELEASE}_${DATE} -t workbench-images:cuda-ubi9-py39_${RELEASE}_${DATE} .
-	cd runtime && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi9-py39_${RELEASE}_${DATE} -t workbench-images:cuda-ubi9-py39-runtime_${RELEASE}_${DATE} .
-	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi9-py39-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-ubi9-py39-runtime-cudnn_${RELEASE}_${DATE} .
-	cd devel && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi9-py39_${RELEASE}_${DATE} -t workbench-images:cuda-ubi9-py39-devel_${RELEASE}_${DATE} .
-	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-ubi9-py39-devel_${RELEASE}_${DATE} -t workbench-images:cuda-ubi9-py39-devel-cudnn_${RELEASE}_${DATE} .
-# Add tag to simplify naming in the main tree, using runtime-cudnn for base cuda image
-	podman tag workbench-images:cuda-ubi9-py39-runtime-cudnn_${RELEASE}_${DATE} workbench-images:cuda-base-ubi9-py39_${RELEASE}_${DATE}
+all: c9s-py39 validate-py39 c9s-py311 validate-py311
 
 c9s-py39:
-	cd base && podman build --build-arg=BASE_IMAGE=workbench-images:base-c9s-py39_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39_${RELEASE}_${DATE} .
-	cd runtime && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-runtime_${RELEASE}_${DATE} .
+	cd base && podman build --build-arg=BASE_IMAGE=${BASE_IMAGE_PY39} -t workbench-images:cuda-c9s-py39-chainbase_${RELEASE}_${DATE} .
+	cd runtime && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39-chainbase_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-runtime_${RELEASE}_${DATE} .
 	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-runtime-cudnn_${RELEASE}_${DATE} .
-	cd devel && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-devel_${RELEASE}_${DATE} .
+	cd devel && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-devel_${RELEASE}_${DATE} .
 	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py39-devel_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py39-devel-cudnn_${RELEASE}_${DATE} .
-# Add tag to simplify naming in the main tree, using runtime-cudnn for base cuda image
-	podman tag workbench-images:cuda-c9s-py39-runtime-cudnn_${RELEASE}_${DATE} workbench-images:cuda-base-c9s-py39_${RELEASE}_${DATE}
+
+c9s-py311:
+	cd base && podman build --build-arg=BASE_IMAGE=${BASE_IMAGE_PY311} -t workbench-images:cuda-c9s-py311-chainbase_${RELEASE}_${DATE} .
+	cd runtime && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py311-chainbase_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py311-runtime_${RELEASE}_${DATE} .
+	cd runtime/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py311-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py311-runtime-cudnn_${RELEASE}_${DATE} .
+	cd devel && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py311-runtime_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py311-devel_${RELEASE}_${DATE} .
+	cd devel/cudnn8 && podman build --build-arg=BASE_IMAGE=workbench-images:cuda-c9s-py311-devel_${RELEASE}_${DATE} -t workbench-images:cuda-c9s-py311-devel-cudnn_${RELEASE}_${DATE} .
 
 validate-py39:
 	@required_commands=$(REQUIRED_RUNTIME_IMAGE_COMMANDS) ; \
-	if [[ $$IMAGE == "" ]] ; then \
-		echo "Usage: make validate-py39 IMAGE=<container-image-name>" ; \
+	if [[ $(IMAGE_PY39) == "" ]] ; then \
+		echo "Usage: make validate-py39 RELEASE=... DATE=..." ; \
 		exit 1 ; \
 	fi ; \
 	fail=0; \
 	echo "-----------------------------------------------------------" ; \
-	echo "Validating container image $$IMAGE" ; \
+	echo "Validating container image $(IMAGE_PY39)" ; \
 	echo "-----------------------------------------------------------" ; \
 	echo "=> Loading container image ..." ; \
-	podman inspect $$IMAGE > /dev/null 2>&1 ; \
+	podman inspect localhost/$(IMAGE_PY39) > /dev/null 2>&1 ; \
 	if [ $$? -ne 0 ]; then \
-		echo "Container image $$IMAGE is not present or failing" ; \
+		echo "Container image $(IMAGE_PY39) is not present or failing" ; \
 		exit 1; \
 	fi; \
 	for cmd in $$required_commands ; do \
-        echo "=> Checking container image $$IMAGE for $$cmd..." ; \
-		podman run --rm  --entrypoint /bin/bash $$IMAGE -c "which $$cmd  > /dev/null 2>&1 " ; \
+        echo "=> Checking container image $(IMAGE_PY39) for $$cmd..." ; \
+		podman run --rm  --entrypoint /bin/bash localhost/$(IMAGE_PY39) -c "which $$cmd  > /dev/null 2>&1 " ; \
 		if [ $$? -ne 0 ]; then \
-			echo "ERROR: Container image $$IMAGE does not meet criteria for command: $$cmd" ; \
+			echo "ERROR: Container image $(IMAGE_PY39) does not meet criteria for command: $$cmd" ; \
 			fail=1; \
 			continue; \
 		fi; \
 		if [ $$cmd == "python" ]; then \
 			echo "=> Checking Python version..." ; \
-			IMAGE_PYTHON3_MINOR_VERSION=`podman run --rm  --entrypoint /bin/bash $$IMAGE -c "$$cmd --version | cut -d' ' -f2 | cut -d'.' -f2"` ; \
+			IMAGE_PYTHON3_MINOR_VERSION=`podman run --rm  --entrypoint /bin/bash $(IMAGE_PY39) -c "$$cmd --version | cut -d' ' -f2 | cut -d'.' -f2"` ; \
 			if [[ $$IMAGE_PYTHON3_MINOR_VERSION -ne 9 ]]; then \
-				echo "ERROR: Container image $$IMAGE: unable to parse Python version or wrong version" ; \
+				echo "ERROR: Container image $(IMAGE_PY39): unable to parse Python version or wrong version" ; \
 				fail=1; \
 			fi; \
 		fi; \
 	done ; \
 	echo "-----------------------------------------------------------" ; \
 	if [ $$fail -eq 1 ]; then \
-		echo "=> ERROR: Container image $$IMAGE failed to validate" ; \
+		echo "=> ERROR: Container image $(IMAGE_PY39) failed to validate" ; \
 		exit 1 ; \
 	else \
-		echo "=> Container image $$IMAGE validated" ; \
+		echo "=> Container image $(IMAGE_PY39) validated" ; \
 	fi; \
 
-validate-py38:
+validate-py311:
 	@required_commands=$(REQUIRED_RUNTIME_IMAGE_COMMANDS) ; \
-	if [[ $$IMAGE == "" ]] ; then \
-		echo "Usage: make validate-py38 IMAGE=<container-image-name>" ; \
+	if [[ $(IMAGE_PY311) == "" ]] ; then \
+		echo "Usage: make validate-py39 RELEASE=... DATE=..." ; \
 		exit 1 ; \
 	fi ; \
 	fail=0; \
 	echo "-----------------------------------------------------------" ; \
-	echo "Validating container image $$IMAGE" ; \
+	echo "Validating container image $(IMAGE_PY311)" ; \
 	echo "-----------------------------------------------------------" ; \
 	echo "=> Loading container image ..." ; \
-	podman inspect $$IMAGE > /dev/null 2>&1 ; \
+	podman inspect localhost/$(IMAGE_PY311) > /dev/null 2>&1 ; \
 	if [ $$? -ne 0 ]; then \
-		echo "Container image $$IMAGE is not present or failing" ; \
+		echo "Container image $(IMAGE_PY311) is not present or failing" ; \
 		exit 1; \
 	fi; \
 	for cmd in $$required_commands ; do \
-        echo "=> Checking container image $$IMAGE for $$cmd..." ; \
-		podman run --rm  --entrypoint /bin/bash $$IMAGE -c "which $$cmd  > /dev/null 2>&1 " ; \
+        echo "=> Checking container image $(IMAGE_PY311) for $$cmd..." ; \
+		podman run --rm  --entrypoint /bin/bash localhost/$(IMAGE_PY311) -c "which $$cmd  > /dev/null 2>&1 " ; \
 		if [ $$? -ne 0 ]; then \
-			echo "ERROR: Container image $$IMAGE does not meet criteria for command: $$cmd" ; \
+			echo "ERROR: Container image $(IMAGE_PY311) does not meet criteria for command: $$cmd" ; \
 			fail=1; \
 			continue; \
 		fi; \
 		if [ $$cmd == "python" ]; then \
 			echo "=> Checking Python version..." ; \
-			IMAGE_PYTHON3_MINOR_VERSION=`podman run --rm  --entrypoint /bin/bash $$IMAGE -c "$$cmd --version | cut -d' ' -f2 | cut -d'.' -f2"` ; \
-			if [[ $$IMAGE_PYTHON3_MINOR_VERSION -ne 8 ]]; then \
-				echo "ERROR: Container image $$IMAGE: unable to parse Python version or wrong version" ; \
+			IMAGE_PYTHON3_MINOR_VERSION=`podman run --rm  --entrypoint /bin/bash $(IMAGE_PY311) -c "$$cmd --version | cut -d' ' -f2 | cut -d'.' -f2"` ; \
+			if [[ $$IMAGE_PYTHON3_MINOR_VERSION -ne 11 ]]; then \
+				echo "ERROR: Container image $(IMAGE_PY311): unable to parse Python version or wrong version" ; \
 				fail=1; \
 			fi; \
 		fi; \
 	done ; \
 	echo "-----------------------------------------------------------" ; \
 	if [ $$fail -eq 1 ]; then \
-		echo "=> ERROR: Container image $$IMAGE failed to validate" ; \
+		echo "=> ERROR: Container image $(IMAGE_PY311) failed to validate" ; \
 		exit 1 ; \
 	else \
-		echo "=> Container image $$IMAGE validated" ; \
+		echo "=> Container image $(IMAGE_PY311) validated" ; \
 	fi; \
