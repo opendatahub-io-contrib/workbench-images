@@ -1,0 +1,12 @@
+###########################
+# Deploy Runtime packages #
+###########################
+
+USER 1001
+
+WORKDIR /opt/app-root/bin
+
+# Copy notebook launcher and utils
+COPY --chown=1001:0 utils utils/
+
+WORKDIR /opt/app-root/src

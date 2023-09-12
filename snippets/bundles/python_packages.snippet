@@ -1,0 +1,23 @@
+##########################
+# Deploy Python packages #
+##########################
+
+USER 1001
+
+WORKDIR /opt/app-root/bin/
+
+# Copy packages list
+COPY --chown=1001:0 requirements.txt ./
+
+# Install packages and cleanup
+# (all commands are chained to minimize layer size)
+RUN echo "Installing softwares and packages" && \
+    # Install Python packages \
+    pip install --no-cache-dir -r requirements.txt && \
+    # Fix permissions to support pip in Openshift environments \
+    chmod -R g+w /opt/app-root/lib/$PYTHON_FOLDER/site-packages && \
+    fix-permissions /opt/app-root -P
+
+WORKDIR /opt/app-root/src/
+
+##########################

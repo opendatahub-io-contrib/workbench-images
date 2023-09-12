@@ -2,7 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2023c] - 2023-07-17
+
+- Remove Python 3.8 support
+- Added Python 3.11 support
+- Switch all images to CentOS Stream 9 (c9s)
+- Use new base image [https://quay.io/repository/sclorg/python-39-c9s](https://quay.io/repository/sclorg/python-39-c9s)
+- Runtimes set now before workbench images to simplify chaining
+- Toolkit installed in CUDA Development images
+- Add PyTorch and Tensorflow images because of the new c9s base
+- Fix #28
+- Updates to apps and packages
+  - VSCode: 4.9.1 => 4.16.1
+  - R: 4.2.2 => 4.3.1
+  - RStudio: 2022.12.0-353 => 2023.06.1-524
+
+## [2023b-patch]
 
 - Fixes on VSCode and RStudio images for bad redirects, integrated in 2023b
 - Addition of TrustyAI workbench image, integrated in 2023b

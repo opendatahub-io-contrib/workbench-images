@@ -1,0 +1,163 @@
+#!/bin/bash
+
+###############################################
+# Functions used with the interactive builder # 
+###############################################
+
+##
+## List subfolder names in a given folder
+##
+
+# Specify the path to the folder you want to list
+# target_folder="/path/to/your/folder"
+
+# Call the function and store the result in an array
+# folder_array=($(list_subfolders "$target_folder"))
+
+# Iterate through the subfolder names in the array
+#for subfolder_name in "${folder_array[@]}"; do
+#    echo "Subfolder name: $subfolder_name"
+#    # You can perform any further actions here
+#done
+
+list_subfolders() {
+    local target_folder="$1"
+    local subfolder_array=()
+
+    for entry in "$target_folder"/*; do
+        if [ -d "$entry" ]; then
+            subfolder_name=$(basename "$entry")
+            subfolder_array+=("$subfolder_name")
+        fi
+    done
+
+    echo "${subfolder_array[@]}"
+}
+
+####
+# Create a dialog to select a subfolder from a given folder
+# ARGS:
+#   Base folder
+#   Python verion - Optional, if not defined, the function will only check for subfolders presence (behaviour for IDEs)
+# OUTPUTS:
+#   Subfolder selection dialog
+# RETURN:
+#   Select subfolder as String
+# EXAMPLE:
+#   echo "Which Applications/Libraries bundle do you want to use?"
+#   echo "-------------------------------------------------------"
+#   bundle_folder="/path/to/your/folder"
+#   item="$(select_item "$bundle_folder")"
+####
+select_subfolder() {
+  local folder="$1"
+  local python_ver="$2"
+  local items=()
+  local item_number=1
+  local item_choice=
+  local item_folder=
+  local item_display=
+
+  # Check if the specified folder exists
+  if [[ ! -d "$folder" ]]; then
+    echo "Error: Folder '$folder' not found." >&2
+    exit 1
+  fi
+
+  # Populate the 'items' array with subfolder names
+  for subfolder in "$folder"/*; do
+    if [[ -d "$subfolder" ]]; then
+      # Only propose the subfolder if the matching python folder exists or there is an override to force-display it (bundles), or $python_ver has not been set (ides)
+      if [[ -d "$subfolder/$python_ver" || -f "$subfolder/selection-override" ]]; then
+        items+=("$subfolder")
+        item_display=$(head -n 1 $subfolder/display.txt)
+        tw_echo "$item_number) $item_display" 1 >&2
+        ((item_number++))
+      fi
+    fi
+  done
+
+  while true; do
+    # Prompt for the user's choice
+    tw_echo "Enter the number corresponding to your choice: " 0 >&2
+    read -p "" item_choice
+
+    # Default to 1 if no choice is provided
+    item_choice=${item_choice:-1}
+
+    # Validate the user's choice
+    if ((item_choice >= 1 && item_choice <= ${#items[@]})); then
+        item_folder="$(basename "${items[item_choice - 1]}")"
+        echo $item_folder
+        break
+    else
+        tw_echo "Invalid choice. Please enter a valid number." 0 >&2
+    fi
+  done
+}
+
+####
+# Create a dialog to select an option given a list of valid values
+# ARGS:
+#   Maximum valid value
+# OUTPUTS:
+#   Value selection dialog
+# RETURN:
+#   Select value as String
+# EXAMPLE:
+#   echo "Which item do you want to select?"
+#   echo "---------------------------------"
+#   max_value=3
+#   value="$(select_value $max_value)"
+####
+select_value() {
+  local max_value="$1"
+  local selected_value=
+  local valid_values=()
+  for ((i = 1; i <= max_value; i++)); do
+      valid_values+=("$i")
+  done
+
+  while true; do
+    tw_echo "Enter the number corresponding to your choice: " 0 >&2
+    read -p "" selected_value
+    selected_value=${selected_value:-1}
+    if [[ $(echo ${valid_values[@]} | fgrep -w $selected_value) ]]; then
+      echo $selected_value
+      break
+    else
+      tw_echo "Invalid choice. Please enter a value between 1 and $max_value" 1 >&2
+    fi
+  done
+}
+
+####
+# Echo a string with a typewriter effect
+# ARGS:
+#   String to echo
+#   Flag to add a new line at the end of the effect (0/1)
+# OUTPUTS:
+#   Echoed string
+# RETURN:
+#   Null
+# EXAMPLE:
+#   tw_echo "Here is a string for you to print"
+####
+tw_echo() {
+    local text="$1"
+    local new_line="$2"
+
+    for (( i = 0; i < ${#text}; i++ )); do
+        echo -n "${text:$i:1}"
+
+        # Generate a random delay between 0.01 and 0.02 seconds
+        delay=$(bc <<< "scale=4; 0.01 + 0.01 * $RANDOM / 32767")
+        sleep "$delay"
+    done
+    if [[ $new_line == 1 ]]; then
+      echo  # Print a newline after the typewriter effect
+    fi
+}
+
+
+

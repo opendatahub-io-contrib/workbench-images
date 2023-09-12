@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+# Base packages
+pip = "~=23.2.1"
+setuptools = "~=68.1.2"
+wheel = "~=0.41.2"
+
+[jupyter]
+# JupyterLab packages
+jupyterlab = "~=3.6.5"
+"elyra[kfp-tekton]" = "~=3.15.0"
+jupyter-bokeh = "~=3.0.7"
+jupyter-resource-usage = "~=1.0.1"
+jupyter-server-proxy = "~=4.0.0"
+jupyterlab-git = "~=0.42.0"
+jupyterlab-lsp = "~=4.2.0"
+jupyterlab-tabnine = "~=0.0.24"
+jupyterlab-widgets = "~=3.0.8"
+nbgitpuller = "~=1.2.0"
+
+[requires]
+python_version = "3.11"

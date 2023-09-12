@@ -1,0 +1,10 @@
+{
+    "title": "Runtime Type",
+    "description": "The type of runtime associated with this Component Catalog",
+    "type": "string",
+    "enum": ["KUBEFLOW_PIPELINES"],
+    "default": "KUBEFLOW_PIPELINES",
+    "uihints": {
+        "hidden": true
+    }
+}

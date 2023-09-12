@@ -1,0 +1,22 @@
+[fedora-cisco-openh264]
+name=Fedora epel9 openh264 (From Cisco) - x86_64
+baseurl=https://codecs.fedoraproject.org/openh264/epel/9/$basearch/os/
+type=rpm
+enabled=1
+enabled_metadata=1
+metadata_expire=14d
+repo_gpgcheck=0
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-epel9-$basearch
+skip_if_unavailable=True
+
+[fedora-cisco-openh264-debuginfo]
+name=Fedora epel9 openh264 (From Cisco) - $basearch - Debug
+baseurl=https://codecs.fedoraproject.org/openh264/epel/9/$basearch/debug/
+type=rpm
+enabled=0
+metadata_expire=28d
+repo_gpgcheck=0
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-epel9-$basearch
+skip_if_unavailable=True
