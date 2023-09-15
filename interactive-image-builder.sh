@@ -216,7 +216,14 @@ if [[ -d snippets/bundles/$APP_BUNDLE_FOLDER/$PYTHON_VERSION ]]; then
 fi
 
 # IDE or Runtime code
-cp -r snippets/ides/$IMAGE_IDE_FOLDER/files/* $EXPORT_FOLDER/$FOLDER_NAME/
+if [[ -d snippets/ides/$IMAGE_IDE_FOLDER/files ]]; then
+  cp -r snippets/ides/$IMAGE_IDE_FOLDER/files/* $EXPORT_FOLDER/$FOLDER_NAME/
+fi
+if [[ -d snippets/ides/$IMAGE_IDE_FOLDER/os ]]; then
+  mkdir -p $EXPORT_FOLDER/$FOLDER_NAME/os-ide/
+  cp -r snippets/ides/$IMAGE_IDE_FOLDER/os/os-packages.txt $EXPORT_FOLDER/$FOLDER_NAME/os-ide/
+  CONTAINERFILE_CONTENT+=$(cat "snippets/ides/os_packages_ide.snippet")$'\n\n'
+fi
 CONTAINERFILE_CONTENT+=$(envsubst '${CUDA} ${PYTHON_FOLDER} ${RELEASE}' < snippets/ides/$IMAGE_IDE_FOLDER/$IMAGE_IDE_NAME.snippet)$'\n\n'
 
 # Jupyter-specific additional code
