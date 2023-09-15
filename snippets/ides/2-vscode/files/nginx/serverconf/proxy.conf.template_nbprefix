@@ -16,12 +16,12 @@ location ${NB_PREFIX}/api/ {
 # api calls from culler get to CGI processing
 ###############
 location = ${NB_PREFIX}/api/kernels {
-    return 302 $scheme://$http_host/api/kernels/;
+    return 302 $custom_scheme://$http_host/api/kernels/;
     access_log  off;
 }
 
 location ${NB_PREFIX}/api/kernels/ {
-    return 302 $scheme://$http_host/api/kernels/;
+    return 302 $custom_scheme://$http_host/api/kernels/;
     access_log  off;
 }
 
@@ -41,19 +41,19 @@ location /api/kernels/ {
 # root and prefix get to VSCode endpoint
 ###############
 location = ${NB_PREFIX} {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location ${NB_PREFIX}/ {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location = /vscode {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location = / {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location /vscode/ {
@@ -64,6 +64,7 @@ location /vscode/ {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
     proxy_read_timeout 20d;
+    proxy_set_header X-Forwarded-Proto $custom_scheme;
 
     access_log /var/log/nginx/vscode.access.log json if=$loggable;
 }
