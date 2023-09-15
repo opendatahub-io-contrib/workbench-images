@@ -62,7 +62,8 @@ COPY --chown=1001:0 runtime-images/ /opt/app-root/share/jupyter/metadata/runtime
 RUN sed -i "s/RELEASE/${RELEASE}/" /opt/app-root/share/jupyter/metadata/runtime-images/*.json 
 
 # Jupyter Server config to allow hidden files/folders in explorer. Ref: https://jupyterlab.readthedocs.io/en/latest/user/files.html#displaying-hidden-files
-RUN echo "c.ContentsManager.allow_hidden = True" > /opt/app-root/etc/jupyter/jupyter_server_config.py
+# Jupyter Lab config to hide disabled exporters (WebPDF, Qtpdf, Qtpng)
+COPY --chown=1001:0 etc/ /opt/app-root/etc/jupyter/
 
 WORKDIR /opt/app-root/src
 
