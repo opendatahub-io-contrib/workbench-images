@@ -16,7 +16,7 @@ location /api/ {
 # api calls from culler get to CGI processing
 ###############
 location = /api/kernels {
-    return 302 $scheme://$http_host/api/kernels/;
+    return 302 $custom_scheme://$http_host/api/kernels/;
     access_log  off;
 }
 
@@ -36,11 +36,11 @@ location /api/kernels/ {
 # root and prefix get to VSCode endpoint
 ###############
 location = / {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location = /vscode {
-    return 302 $scheme://$http_host/vscode/;
+    return 302 $custom_scheme://$http_host/vscode/;
 }
 
 location /vscode/ {
@@ -54,6 +54,7 @@ location /vscode/ {
     # Needed to make it work properly
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $custom_scheme;
     proxy_set_header Host $http_host;
     proxy_set_header X-NginX-Proxy true;
     proxy_redirect off;
