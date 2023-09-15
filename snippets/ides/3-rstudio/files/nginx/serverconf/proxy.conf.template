@@ -1,8 +1,8 @@
 ###############
 # Fix rstudio-server auth-sign-in redirect bug
 ###############
-rewrite ^/auth-sign-in(.*) "$scheme://$http_host/rstudio/auth-sign-in$1?appUri=%2Frstudio";
-rewrite ^/auth-sign-out(.*) "$scheme://$http_host/rstudio/auth-sign-out$1?appUri=%2Frstudio";
+rewrite ^/auth-sign-in(.*) "$custom_scheme://$http_host/rstudio/auth-sign-in$1?appUri=%2Frstudio";
+rewrite ^/auth-sign-out(.*) "$custom_scheme://$http_host/rstudio/auth-sign-out$1?appUri=%2Frstudio";
 ###############
 
 ###############
@@ -20,7 +20,7 @@ location /api/ {
 }
 
 location = /api/kernels {
-    return 302 $scheme://$http_host/api/kernels/;
+    return 302 $custom_scheme://$http_host/api/kernels/;
     access_log  off;
 }
 
@@ -40,11 +40,11 @@ location /api/kernels/ {
 # api calls from culler get to CGI processing
 ###############
 location = / {
-    return 302 $scheme://$http_host/rstudio/;
+    return 302 $custom_scheme://$http_host/rstudio/;
 }
 
 location = /rstudio {
-    return 302 $scheme://$http_host/rstudio/;
+    return 302 $custom_scheme://$http_host/rstudio/;
 }
 
 location /rstudio/ {
@@ -57,9 +57,10 @@ location /rstudio/ {
     proxy_read_timeout 20d;
 
     # Needed to make it work properly
-    proxy_set_header X-RStudio-Request $scheme://$http_host$request_uri;
+    proxy_set_header X-RStudio-Request $custom_scheme://$http_host$request_uri;
     proxy_set_header X-RStudio-Root-Path /rstudio;
     proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-Proto $custom_scheme;
 
     access_log /var/log/nginx/rstudio.access.log json if=$loggable;
 }
