@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+# PySpark
+pyspark = "~=3.4.1"
+
+# Builder
+pipenv = "==2023.8.28"
+
+# Base packages
+pip = "~=23.2.1"
+setuptools = "~=68.1.2"
+wheel = "~=0.41.2"
+
+[jupyter]
+
+[requires]
+python_version = "3.11"
