@@ -11,8 +11,9 @@ pyspark = "~=3.4.1"
 
 # Datascience and useful extensions
 boto3 = "~=1.28.40"
-codeflare-sdk = "~=0.7.1"
+codeflare-sdk = "~=0.8"
 kafka-python = "~=2.0.2"
+kfp-tekton = "~=1.8.0"
 kubernetes = "~=25.3.0" # Fixed by kfp@1.8.22 needed by elyra@3.15.0
 matplotlib = "~=3.7.2"
 numpy = "~=1.24.4"

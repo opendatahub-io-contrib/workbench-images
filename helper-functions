@@ -25,7 +25,7 @@ list_subfolders() {
     local subfolder_array=()
 
     for entry in "$target_folder"/*; do
-        if [ -d "$entry" ]; then
+        if [[ -d "$entry" ]]; then
             subfolder_name=$(basename "$entry")
             subfolder_array+=("$subfolder_name")
         fi
