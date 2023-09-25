@@ -1,0 +1,62 @@
+FROM workbench-images:base-c9s-py311_2023c_20230922
+
+LABEL name="workbench-images:runtime-r-c9s-py311_2023c_20230922" \
+    summary="runtime-r  image with Python py311 based on c9s" \
+    description="runtime-r  image with Python py311 based on c9s" \
+    io.k8s.description="runtime-r  image  with Python py311 based on c9s for ODH or RHODS" \
+    io.k8s.display-name="runtime-r  image  with Python py311 based on c9s" \
+    authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
+    io.openshift.build.commit.ref="2023c" \
+    io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images" \
+    io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:runtime-r-c9s-py311_2023c_20230922"
+
+###########################
+# Deploy OS Packages      #
+###########################
+
+USER 0
+
+WORKDIR /opt/app-root/bin/
+
+COPY --chown=1001:0 os-packages.txt ./
+
+RUN yum install -y $(cat os-packages.txt) && \
+    rm -f ./os-packages.txt && \
+    yum -y clean all --enablerepo='*' && \
+    rm -rf /var/cache/dnf && \
+    find /var/log -type f -name "*.log" -exec rm -f {} \;
+
+###########################
+
+####################
+# R Configuration  #
+####################
+
+USER 0
+
+ENV R_VERSION=4.3.1
+
+# Install R
+RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /usr/lib64/R/etc/Rprofile.site && \
+    (umask 002;touch /usr/lib64/R/etc/Renviron.site)
+
+# set R library to default (used in install.r from littler)
+ENV LIBLOC /usr/lib64/R/library
+
+# set User R Library path
+ENV R_LIBS_USER /opt/app-root/src/Rpackages/4.3
+
+###########################
+# Deploy Runtime packages #
+###########################
+
+USER 1001
+
+WORKDIR /opt/app-root/bin
+
+# Copy notebook launcher and utils
+COPY --chown=1001:0 utils utils/
+
+WORKDIR /opt/app-root/src
+
+

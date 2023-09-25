@@ -1,0 +1,11 @@
+compat-openssl11
+fribidi-devel
+harfbuzz-devel
+openssl-libs
+R-core
+R-core-devel
+R-highlight
+R-java
+R-littler
+R-littler-examples
+R-Rcpp

@@ -1,11 +1,11 @@
 FROM ${BASE_IMAGE}
 
-LABEL name="workbench-images:${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}" \
-    summary="${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
-    description="${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
-    io.k8s.description="${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image  with Python ${PYTHON_VERSION} based on ${OS_VERSION} for ODH or RHODS" \
-    io.k8s.display-name="${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image  with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
+LABEL name="workbench-images:${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}" \
+    summary="${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
+    description="${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
+    io.k8s.description="${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image  with Python ${PYTHON_VERSION} based on ${OS_VERSION} for ODH or RHODS" \
+    io.k8s.display-name="${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME} ${IMAGE_TYPE} image  with Python ${PYTHON_VERSION} based on ${OS_VERSION}" \
     authoritative-source-url="https://github.com/opendatahub-contrib/workbench-images" \
     io.openshift.build.commit.ref="${RELEASE}" \
     io.openshift.build.source-location="https://github.com/opendatahub-contrib/workbench-images" \
-    io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}"
+    io.openshift.build.image="https://quay.io/opendatahub-contrib/workbench-images:${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}"

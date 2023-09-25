@@ -68,6 +68,8 @@ COPY --chown=1001:0 run-langflow.sh run-nginx.sh ./
 
 ENV SHELL /bin/bash
 
+ENV LANGFLOW_AUTO_LOGIN True
+
 WORKDIR /opt/app-root/src
 
 USER 1001
