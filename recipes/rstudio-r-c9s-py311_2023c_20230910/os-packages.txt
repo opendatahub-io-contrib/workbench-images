@@ -1,9 +1,0 @@
-R-core
-R-core-devel
-R-java
-R-Rcpp
-R-highlight
-R-littler
-R-littler-examples
-openssl-libs
-compat-openssl11

@@ -148,10 +148,10 @@ clear
 echo "Which IDE do you want to use?"
 echo "------------------------------"
 ide_folder="./snippets/ides"
-IMAGE_IDE_FOLDER="$(select_subfolder "$ide_folder")"
-IMAGE_IDE_NAME=${IMAGE_IDE_FOLDER#*-}
+IDE_FOLDER="$(select_subfolder "$ide_folder")"
+IDE_NAME=${IDE_FOLDER#*-}
 
-if [[ $IMAGE_IDE_NAME == "runtime" ]]; then
+if [[ $IDE_NAME == "runtime" ]]; then
   IMAGE_TYPE="runtime"
 else
   IMAGE_TYPE="workbench"
@@ -178,7 +178,7 @@ if [[ $PYTHON_VERSION == 'py39' ]]; then PYTHON_FOLDER='python3.9'; fi
 if [[ $PYTHON_VERSION == 'py311' ]]; then PYTHON_FOLDER='python3.11'; fi
 
 # Prepare temporary folder to create the build source
-FOLDER_NAME=${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}
+FOLDER_NAME=${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE}
 mkdir -p $EXPORT_FOLDER/$FOLDER_NAME
 
 # Assemble the Containerfile by concatenating snippets
@@ -193,7 +193,7 @@ if [[ -d snippets/bundles/$APP_BUNDLE_FOLDER/builder ]]; then
 fi
 
 # Start with the base image and labels
-CONTAINERFILE_CONTENT+=$(envsubst '${BASE_IMAGE} ${IMAGE_TYPE} ${CUDA} ${IMAGE_IDE_NAME} ${APP_BUNDLE_NAME} ${OS_VERSION} ${PYTHON_VERSION} ${RELEASE} ${DATE}' < snippets/base/base.snippet)$'\n\n'
+CONTAINERFILE_CONTENT+=$(envsubst '${BASE_IMAGE} ${IMAGE_TYPE} ${CUDA} ${IDE_NAME} ${APP_BUNDLE_NAME} ${OS_VERSION} ${PYTHON_VERSION} ${RELEASE} ${DATE}' < snippets/base/base.snippet)$'\n\n'
 
 # Add OS packages
 if [[ -d snippets/bundles/$APP_BUNDLE_FOLDER/os ]]; then
@@ -216,18 +216,18 @@ if [[ -d snippets/bundles/$APP_BUNDLE_FOLDER/$PYTHON_VERSION ]]; then
 fi
 
 # IDE or Runtime code
-if [[ -d snippets/ides/$IMAGE_IDE_FOLDER/files ]]; then
-  cp -r snippets/ides/$IMAGE_IDE_FOLDER/files/* $EXPORT_FOLDER/$FOLDER_NAME/
+if [[ -d snippets/ides/$IDE_FOLDER/files ]]; then
+  cp -r snippets/ides/$IDE_FOLDER/files/* $EXPORT_FOLDER/$FOLDER_NAME/
 fi
-if [[ -d snippets/ides/$IMAGE_IDE_FOLDER/os ]]; then
+if [[ -d snippets/ides/$IDE_FOLDER/os ]]; then
   mkdir -p $EXPORT_FOLDER/$FOLDER_NAME/os-ide/
-  cp -r snippets/ides/$IMAGE_IDE_FOLDER/os/os-packages.txt $EXPORT_FOLDER/$FOLDER_NAME/os-ide/
+  cp -r snippets/ides/$IDE_FOLDER/os/os-packages.txt $EXPORT_FOLDER/$FOLDER_NAME/os-ide/
   CONTAINERFILE_CONTENT+=$(cat "snippets/ides/os_packages_ide.snippet")$'\n\n'
 fi
-CONTAINERFILE_CONTENT+=$(envsubst '${CUDA} ${PYTHON_FOLDER} ${RELEASE}' < snippets/ides/$IMAGE_IDE_FOLDER/$IMAGE_IDE_NAME.snippet)$'\n\n'
+CONTAINERFILE_CONTENT+=$(envsubst '${CUDA} ${PYTHON_FOLDER} ${RELEASE}' < snippets/ides/$IDE_FOLDER/$IDE_NAME.snippet)$'\n\n'
 
 # Jupyter-specific additional code
-if [[ $IMAGE_IDE_NAME == 'jupyter' ]]; then 
+if [[ $IDE_NAME == 'jupyter' ]]; then 
   cp snippets/bundles/$APP_BUNDLE_FOLDER/$PYTHON_VERSION/requirements-jupyter.txt $EXPORT_FOLDER/$FOLDER_NAME/
 fi
 
@@ -237,4 +237,4 @@ tw_echo "Your recipe has been saved to $EXPORT_FOLDER/$FOLDER_NAME." 1
 echo
 tw_echo "You can build this image with:" 1
 tw_echo "cd $EXPORT_FOLDER/$FOLDER_NAME" 1
-tw_echo "podman build -t workbench-images:${CUDA}${IMAGE_IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE} ." 1
+tw_echo "podman build -t workbench-images:${CUDA}${IDE_NAME}-${APP_BUNDLE_NAME}-${OS_VERSION}-${PYTHON_VERSION}_${RELEASE}_${DATE} ." 1
