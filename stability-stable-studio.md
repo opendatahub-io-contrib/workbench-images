@@ -157,4 +157,7 @@ oc get routes rhods-dashboard -n redhat-ods-applications -o jsonpath={.spec.host
 ![ADD_NOTEBOOK_IMAGE](./doc/create_notebook_2.png "Starting Notebook")
 
 8. Notebook Started
+
 ![STARTED_NOTEBOOK](./doc/starting_server_1.png "Started Notebook")
+
+---
