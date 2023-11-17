@@ -1,12 +1,21 @@
+##############
+# api calls from probes get to StableStudio
+###############
+location = ${NB_PREFIX}/api {
+    return 200 'Healthy';
+    access_log  off;
+}
+###############
+
 ###############
 # root and prefix get to StableStudio endpoint
 ###############
 location = ${NB_PREFIX} {
-    return 200 $custom_scheme://$http_host/;
+    return 302 $custom_scheme://$http_host/;
 }
 
 location ${NB_PREFIX}/ {
-    return 200 $custom_scheme://$http_host/;
+    return 302 $custom_scheme://$http_host/;
 }
 
 location / {
