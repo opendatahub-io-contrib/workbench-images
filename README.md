@@ -104,7 +104,7 @@ The following IDEs are available:
 - LangFlow 0.4.18 (will only work with the Langflow bundle)
 - StableStudio 0.1.0 (Stability.ai)
 
-**NOTE:** For deploying StableStudio, check the following [doc file](./stability-stable-studio.md).
+**NOTE:** For deploying StableStudio, check the following [doc file](snippets/ides/6-stability-studio/stability-stable-studio.md).
 
 ## Building an image
 
