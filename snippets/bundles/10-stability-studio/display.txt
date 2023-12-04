@@ -1,1 +1,1 @@
-Stability Studio 0.0.0
+Stable Studio v0.1.0
