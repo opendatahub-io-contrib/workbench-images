@@ -81,6 +81,21 @@ COPY nginx/api/ /opt/app-root/api/
 COPY --chown=1001:0 utils utils/
 COPY --chown=1001:0 run-stable-studio.sh run-nginx.sh ./
 
+# Fixing App permissions
+WORKDIR /app
+# To fix permissions for Workbenches in a DataScienceProject
+RUN chmod -R 775 /app/packages/*
+# This configures StableStudio git repo to don't fail when checking
+# '/app/packages' folders permissions.  It's applied as an 'echo' command
+# instead of 'git config ...' because user home folder is fixed at
+# '/opt/app-root/src' and it's there where 'git config' command applies its
+# results.
+RUN echo "\
+  [safe] \
+      directory = /app \
+" >> /app/.git/config
+
+
 ENV SHELL /bin/bash
 
 WORKDIR /opt/app-root/src
