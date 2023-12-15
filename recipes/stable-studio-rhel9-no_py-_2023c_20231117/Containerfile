@@ -91,8 +91,8 @@ RUN chmod -R 775 /app/packages/*
 # '/opt/app-root/src' and it's there where 'git config' command applies its
 # results.
 RUN echo "\
-  [safe] \
-      directory = /app \
+[safe] \
+    directory = /app \
 " >> /app/.git/config
 
 

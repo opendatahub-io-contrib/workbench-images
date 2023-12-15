@@ -6,7 +6,11 @@ source ${SCRIPT_DIR}/utils/*.sh
 
 # Start nginx and fastcgiwrap
 run-nginx.sh &
-spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap 
+spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap
+
+
+# Fix git permissions
+git config --global --add safe.directory /app
 
 
 # Start server
