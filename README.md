@@ -28,6 +28,7 @@ Those images can be used directly as Workbenches within ODH or RHODS after impor
 |Jupyter Tensorflow (CUDA)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-tensorflow-c9s-py311_2023c_latest|
 |Jupyter Langchain (CUDA)|quay.io/opendatahub-contrib/workbench-images:cuda-jupyter-langchain-c9s-py311_2023c_latest|
 |Langflow (CUDA)|quay.io/opendatahub-contrib/workbench-images:cuda-langflow-langflow-c9s-py39_2023c_latest|
+|StableStudio (Stability.ai)|quay.io/opendatahub-contrib/workbench-images:stable-studio-rhel9-no_py-_2023c_20231117|
 
 ### Runtime images
 
@@ -101,6 +102,9 @@ The following IDEs are available:
 - VSCode 4.16.1
 - RStudio 2023.06.01
 - LangFlow 0.4.18 (will only work with the Langflow bundle)
+- StableStudio 0.1.0 (Stability.ai)
+
+**NOTE:** For deploying StableStudio, check the following [doc file](snippets/ides/6-stability-studio/stability-stable-studio.md).
 
 ## Building an image
 
