@@ -110,7 +110,7 @@ The following IDEs are available:
 
 If the pre-built images are not enough, you can easily create your own one with the available bundles and IDEs.
 
-**Requirements**: [Podman](https://podman.io/) and [Skopeo](https://github.com/containers/skopeo/blob/main/install.md) have to be installed on your system to be able to use the wizard.
+**Requirements**: [Podman](https://podman.io/), [Skopeo](https://github.com/containers/skopeo/blob/main/install.md) and [bc](https://www.gnu.org/software/bc/) have to be installed on your system to be able to use the wizard.
 
 - Clone this repo.
 - Launch the wizard: `./interactive-image-builder.sh`
